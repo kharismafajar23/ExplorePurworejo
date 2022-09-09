@@ -43,4 +43,7 @@ dependencies {
     //Desain kode OTP
     implementation 'io.github.chaosleung:pinview:1.4.4'
 
+    //lottie animation
+    implementation 'com.airbnb.android:lottie:3.4.1'
+
 }

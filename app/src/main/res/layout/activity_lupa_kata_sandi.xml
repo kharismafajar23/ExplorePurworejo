@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="25dp"
+    android:paddingRight="25dp"
+    tools:context=".MasukDanDaftar.LupaKataSandiActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_resetkatasandi"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/poppins_semi_bold"
+            android:text="@string/reset_kata_sandi"
+            android:textColor="@color/main_text_color"
+            android:textSize="24sp" />
+
+        <TextView
+            android:text="@string/desc_reset_kata_sandi"
+            android:textSize="14sp"
+            android:textColor="@color/main_text_color"
+            android:fontFamily="@font/poppins_regular"
+            android:textAlignment="center"
+            android:lineHeight="26sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="16px"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:hint="@string/email"
+            app:hintTextColor="@color/text_color"
+            app:boxStrokeColor="@color/text_color"
+            app:boxStrokeWidthFocused="1dp"
+            android:layout_marginTop="12dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/poppins_regular"
+                android:textColor="@color/text_color"
+                android:inputType="textEmailAddress"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/btnDaftar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/selanjutnya"
+            android:textSize="14sp"
+            android:fontFamily="@font/poppins_medium"
+            android:textColor="@color/putih"
+            android:textAllCaps="false"
+            android:background="@drawable/bg_button"
+            android:layout_marginTop="52dp"
+            android:onClick="keLupaSandi2"/>
+
+    </LinearLayout>
+
+</ScrollView>

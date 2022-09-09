@@ -15,18 +15,30 @@
     <string name="masuk">Masuk</string>
     <string name="daftar">Daftar</string>
     <string name="ingat_saya">Ingat saya</string>
+    <string name="reset_kata_sandi">Reset Kata Sandi</string>
+    <string name="desc_reset_kata_sandi">Masukkan email yang digunakan\nuntuk mendaftar</string>
+    <string name="pilih_metode">Pilih Metode</string>
+    <string name="desc_pilih_metode">Pilih metode untuk merubah\nkata sandi</string>
+    <string name="sms">SMS</string>
 
     <string name="buat_akun">Buat Akun</string>
+    <string name="selanjutnya">Selanjutnya</string>
 
     <string name="nama_lengkap">Nama Lengkap</string>
     <string name="username">Username</string>
     <string name="email">Email</string>
     <string name="kata_sandi">Kata Sandi</string>
+    <string name="komfirmasi_kata_sandi_baru">Konfirmasi Kata Sandi Baru</string>
+    <string name="konfirmasi_kata_sandi">Konfirmasi kata Sandi</string>
     <string name="no_telefon">Nomor Telefon</string>
     <string name="ket_mendaftar">Dengan mendaftar, kamu sudah setuju dengan semua syarat dan ketentuan dalam aplikasi</string>
     <string name="verifikasi">Verifikasi</string>
     <string name="desc_verifikasi">Masukkan kode OTP yang diterima melalui SMS\nke nomor yang telah didaftarkan</string>
     <string name="verifikasi_kode">Verifikasi kode</string>
+    <string name="kata_sandi_baru">Kata Sandi Baru</string>
+    <string name="desc_kata_sandi_baru">Masukkan kata sandi baru,\njangan sampai lupa lagi ya</string>
+    <string name="kata_sandi_diperbarui">Kata Sandi\nDiperbarui</string>
+    <string name="desc_kata_sandi_diperbarui">Silahkan masuk dengan kata sandi baru</string>
 
     <string name="jenis_kelamin">Jenis Kelamin</string>
     <string name="laki_laki">Laki-laki</string>

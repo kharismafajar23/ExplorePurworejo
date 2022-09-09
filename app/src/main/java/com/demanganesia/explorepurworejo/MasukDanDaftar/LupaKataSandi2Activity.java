@@ -9,22 +9,21 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.demanganesia.explorepurworejo.R;
 
-public class LoginActivity extends AppCompatActivity {
+public class LupaKataSandi2Activity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
-
+        setContentView(R.layout.activity_lupa_kata_sandi2);
         //menghilangkan status bar
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
-    }
-    public void keDaftar(View view) {
-        startActivity(new Intent(getApplicationContext(), DaftarActivity.class));
     }
 
-    public void keLupaSandi(View view) {
-        startActivity(new Intent(getApplicationContext(), LupaKataSandiActivity.class));
+    public void keVerifikasiLupaSandiViaSMS(View view) {
+        startActivity(new Intent(getApplicationContext(), VerifikasiLupaSandiActivity.class));
+    }
+
+    public void keVerifikasiLupaSandiViaEmail(View view) {
+        startActivity(new Intent(getApplicationContext(), VerifikasiLupaSandiActivity.class));
     }
 }

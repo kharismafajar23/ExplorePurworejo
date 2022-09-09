@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:paddingLeft="25dp"
     android:paddingRight="25dp"
-    tools:context=".MasukDanDaftar.LoginActivity">
+    tools:context=".MasukDanDaftar.KonfirmasiSandiBaruActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -19,41 +19,54 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:src="@drawable/login1"/>
+            android:src="@drawable/ic_katasandibaru"/>
 
         <TextView
+            android:text="@string/kata_sandi_baru"
+            android:textSize="28sp"
+            android:textColor="@color/main_text_color"
+            android:fontFamily="@font/poppins_semi_bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="20dp"
-            android:fontFamily="@font/poppins_semi_bold"
-            android:text="@string/login1"
+            android:layout_marginTop="40dp"/>
+
+        <TextView
+            android:text="@string/desc_kata_sandi_baru"
+            android:textSize="14sp"
             android:textColor="@color/main_text_color"
-            android:textSize="24sp" />
+            android:fontFamily="@font/poppins_regular"
+            android:textAlignment="center"
+            android:lineHeight="26sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="16px"/>
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:hint="@string/username"
+            android:hint="@string/kata_sandi_baru"
             app:hintTextColor="@color/text_color"
             app:boxStrokeColor="@color/text_color"
             app:boxStrokeWidthFocused="1dp"
-            android:layout_marginTop="35dp">
+            app:endIconMode="password_toggle"
+            android:layout_marginTop="18dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:fontFamily="@font/poppins_regular"
                 android:textColor="@color/text_color"
-                android:inputType="text"/>
+                android:inputType="textPassword"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:hint="@string/kata_sandi"
+            android:hint="@string/konfirmasi_kata_sandi"
             app:hintTextColor="@color/text_color"
             app:boxStrokeColor="@color/text_color"
             app:boxStrokeWidthFocused="1dp"
@@ -68,73 +81,19 @@
                 android:inputType="textPassword"/>
         </com.google.android.material.textfield.TextInputLayout>
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4px">
-
-            <CheckBox
-                style="@style/Widget.AppCompat.CompoundButton.CheckBox"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_alignParentLeft="true"
-                android:buttonTint="@color/text_color"
-                android:fontFamily="@font/poppins_medium"
-                android:text="@string/ingat_saya"
-                android:textColor="@color/text_color"
-                android:textSize="12sp" />
-
-            <TextView
-                android:id="@+id/TVLupaSandi"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:fontFamily="@font/poppins_medium"
-                android:text="@string/lupa_kata_sandi"
-                android:textColor="@color/text_color"
-                android:textSize="12sp"
-                android:onClick="keLupaSandi"/>
-
-        </RelativeLayout>
-
         <Button
-            android:id="@+id/BtnMasuk"
+            android:id="@+id/btnDaftar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/mulai_sekarang"
+            android:text="@string/verifikasi_kode"
             android:textSize="14sp"
             android:fontFamily="@font/poppins_medium"
             android:textColor="@color/putih"
             android:textAllCaps="false"
             android:background="@drawable/bg_button"
-            android:layout_marginTop="32dp"/>
+            android:layout_marginTop="80dp"
+            android:onClick="keSuksesupdateSandi"/>
 
-        <LinearLayout
-            android:layout_marginTop="12dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_gravity="center_horizontal">
-
-            <TextView
-                android:text="@string/belum_punya_akun"
-                android:textColor="@color/text_color"
-                android:fontFamily="@font/poppins_medium"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
-            <TextView
-                android:id="@+id/TVDaftar"
-                android:text="@string/daftar"
-                android:textColor="@color/hijau"
-                android:fontFamily="@font/poppins_medium"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="4dp"
-                android:onClick="keDaftar"/>
-        </LinearLayout>
     </LinearLayout>
+
 </ScrollView>

@@ -10,7 +10,22 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ExplorePurworejo">
         <activity
-            android:name=".MasukDanDaftar.VerifikasiActivity"
+            android:name=".MasukDanDaftar.SuksesUpdateSandiActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MasukDanDaftar.KonfirmasiSandiBaruActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MasukDanDaftar.VerifikasiLupaSandiActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MasukDanDaftar.LupaKataSandi2Activity"
+            android:exported="false" />
+        <activity
+            android:name=".MasukDanDaftar.LupaKataSandiActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MasukDanDaftar.VerifikasiDaftarActivity"
             android:exported="false" />
         <activity
             android:name=".MasukDanDaftar.Daftar3Activity"

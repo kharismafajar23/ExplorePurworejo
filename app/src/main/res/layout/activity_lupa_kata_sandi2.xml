@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="25dp"
+    android:paddingRight="25dp"
+    tools:context=".MasukDanDaftar.LupaKataSandi2Activity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_metodelupasandi"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/poppins_semi_bold"
+            android:text="@string/pilih_metode"
+            android:textColor="@color/main_text_color"
+            android:textSize="24sp" />
+
+        <TextView
+            android:text="@string/desc_pilih_metode"
+            android:textSize="14sp"
+            android:textColor="@color/main_text_color"
+            android:fontFamily="@font/poppins_regular"
+            android:textAlignment="center"
+            android:lineHeight="26sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="16px"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/outline_hijau"
+            android:padding="20dp"
+            android:layout_marginTop="32dp"
+            android:onClick="keVerifikasiLupaSandiViaSMS">
+
+            <ImageView
+                android:id="@+id/IVPhone"
+                android:src="@drawable/ic_phone"
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/sms"
+                android:text="@string/sms"
+                android:textSize="12sp"
+                android:textColor="@color/text_color"
+                android:fontFamily="@font/poppins_regular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_toRightOf="@id/IVPhone"/>
+
+            <TextView
+                android:id="@+id/desc_sms"
+                android:text="+6281234567"
+                android:textSize="16sp"
+                android:textColor="@color/text_color"
+                android:fontFamily="@font/poppins_semi_bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_toRightOf="@id/IVPhone"
+                android:layout_below="@id/sms"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/outline_hijau"
+            android:padding="20dp"
+            android:layout_marginTop="12dp"
+            android:onClick="keVerifikasiLupaSandiViaEmail">
+
+            <ImageView
+                android:id="@+id/IVEmail"
+                android:src="@drawable/ic_email"
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/TVEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_toRightOf="@id/IVEmail"
+                android:fontFamily="@font/poppins_regular"
+                android:text="@string/email"
+                android:textColor="@color/text_color"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/desc_email"
+                android:text="supportme@gmail.com"
+                android:textSize="16sp"
+                android:textColor="@color/text_color"
+                android:fontFamily="@font/poppins_semi_bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_toRightOf="@id/IVEmail"
+                android:layout_below="@id/TVEmail"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</ScrollView>
