@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="25dp"
+    android:paddingRight="25dp"
+    tools:context=".MasukDanDaftar.VerifikasiActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_verifikasi"/>
+
+        <TextView
+            android:text="@string/verifikasi"
+            android:textSize="28sp"
+            android:textColor="@color/main_text_color"
+            android:fontFamily="@font/poppins_semi_bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="40dp"/>
+
+        <TextView
+            android:text="@string/desc_verifikasi"
+            android:textSize="14sp"
+            android:textColor="@color/main_text_color"
+            android:fontFamily="@font/poppins_regular"
+            android:textAlignment="center"
+            android:lineHeight="26sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="16px"/>
+
+        <com.chaos.view.PinView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:itemCount="6"
+            app:itemWidth="43dp"
+            app:itemHeight="43dp"
+            app:itemSpacing="6dp"
+            app:itemRadius="4dp"
+            android:textColor="@color/main_text_color"
+            android:fontFamily="@font/poppins_medium"
+            android:layout_gravity="center"
+            app:lineColor="@color/text_color"
+            style="@style/PinWidget.PinView"
+            android:inputType="number"
+            android:cursorVisible="true"
+            app:cursorColor="@color/hijau"
+            app:hideLineWhenFilled="true"
+            android:layout_marginTop="16dp"
+            app:lineWidth="1dp"/>
+
+        <Button
+            android:id="@+id/btnDaftar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/verifikasi_kode"
+            android:textSize="14sp"
+            android:fontFamily="@font/poppins_medium"
+            android:textColor="@color/putih"
+            android:textAllCaps="false"
+            android:background="@drawable/bg_button"
+            android:layout_marginTop="80dp"/>
+
+    </LinearLayout>
+
+</ScrollView>

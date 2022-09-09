@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/image_onboard"
+        android:src="@drawable/ic_onboard1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/title_onboard"
+        android:text="Title"
+        android:textSize="24sp"
+        android:textColor="@color/main_text_color"
+        android:fontFamily="@font/poppins_semi_bold"
+        android:layout_marginTop="36dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/deskripsi_onboard"
+        android:text="@string/onboard_deskripsi_1"
+        android:textSize="14sp"
+        android:textColor="@color/text_color"
+        android:fontFamily="@font/poppins_regular"
+        android:textAlignment="center"
+        android:lineHeight="26sp"
+        android:layout_marginTop="16px"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>

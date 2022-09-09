@@ -1,0 +1,46 @@
+<resources>
+    <string name="app_name">Explore Purworejo</string>
+
+    <string name="heading_size">21sp</string>
+    <string name="heading1">24sp</string>
+    <string name="keterangan">10sp</string>
+    <string name="btn_text_size">14sp</string>
+
+    //disini
+    <string name="login1">Masuk dulu ya</string>
+    <string name="lupa_kata_sandi">Lupa kata sandi ?</string>
+    <string name="mulai_sekarang">Mulai Sekarang</string>
+    <string name="belum_punya_akun">Belum Punya Akun?</string>
+    <string name="sudah_punya_akun">Sudah Punya Akun?</string>
+    <string name="masuk">Masuk</string>
+    <string name="daftar">Daftar</string>
+    <string name="ingat_saya">Ingat saya</string>
+
+    <string name="buat_akun">Buat Akun</string>
+
+    <string name="nama_lengkap">Nama Lengkap</string>
+    <string name="username">Username</string>
+    <string name="email">Email</string>
+    <string name="kata_sandi">Kata Sandi</string>
+    <string name="no_telefon">Nomor Telefon</string>
+    <string name="ket_mendaftar">Dengan mendaftar, kamu sudah setuju dengan semua syarat dan ketentuan dalam aplikasi</string>
+    <string name="verifikasi">Verifikasi</string>
+    <string name="desc_verifikasi">Masukkan kode OTP yang diterima melalui SMS\nke nomor yang telah didaftarkan</string>
+    <string name="verifikasi_kode">Verifikasi kode</string>
+
+    <string name="jenis_kelamin">Jenis Kelamin</string>
+    <string name="laki_laki">Laki-laki</string>
+    <string name="perempuan">Perempuan</string>
+    <string name="tanggal_lahir">Tanggal Lahir</string>
+
+    //Onboard Screen
+    //title
+    <string name="onboard_title_1">Selamat Datang</string>
+    <string name="onboard_title_2">Jelajahi Purworejo</string>
+    <string name="onboard_title_3">Ciptakan Kenangan</string>
+
+    //deskripsi
+    <string name="onboard_deskripsi_1">Selamat datang di aplikasi Explore\nPurworejo, kami akan membantu kamu\nmenjelajah keindahan Purworejo</string>
+    <string name="onboard_deskripsi_2">Menjelajah Purworejo menjadi lebih\nmudah, jangan pernah lewatkan setiap\nkeindahan di dalamnya</string>
+    <string name="onboard_deskripsi_3">Setiap sudut Purworejo selalu\nmemberikan kenangan dan cerita\ntersendiri bagi kamu</string>
+</resources>
