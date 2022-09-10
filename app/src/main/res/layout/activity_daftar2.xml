@@ -57,6 +57,7 @@
             android:layout_marginTop="36dp"/>
 
         <RadioGroup
+            android:id="@+id/radio_grup"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:orientation="horizontal"
@@ -64,7 +65,7 @@
             android:layout_marginTop="20px">
 
             <RadioButton
-                android:id="@+id/radioLakiLaki"
+                android:id="@+id/laki_laki"
                 android:text="@string/laki_laki"
                 android:textSize="12sp"
                 android:fontFamily="@font/poppins_medium"
@@ -75,7 +76,7 @@
                 android:layout_marginRight="32dp"/>
 
             <RadioButton
-                android:id="@+id/radioPerempuan"
+                android:id="@+id/perempuan"
                 android:text="@string/perempuan"
                 android:textSize="12sp"
                 android:fontFamily="@font/poppins_medium"
@@ -95,6 +96,7 @@
             android:layout_marginTop="30dp"/>
 
         <DatePicker
+            android:id="@+id/DPtanggal_lahir"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:datePickerMode="spinner"
