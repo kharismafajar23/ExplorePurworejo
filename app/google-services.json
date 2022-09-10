@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "316973135731",
+    "project_id": "explore-purworejo",
+    "storage_bucket": "explore-purworejo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:316973135731:android:1a33e904dcc9ea0d0f3706",
+        "android_client_info": {
+          "package_name": "com.demanganesia.explorepurworejo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "316973135731-1i6cq1bmc1cdjtbu1vjnc518ar8cqdd4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCsOM1dK9VRlCasuQ8eWnl50DJMYgT2RvA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "316973135731-1i6cq1bmc1cdjtbu1vjnc518ar8cqdd4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
