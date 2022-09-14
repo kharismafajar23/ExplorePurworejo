@@ -45,6 +45,11 @@
     <string name="perempuan">Perempuan</string>
     <string name="tanggal_lahir">Tanggal Lahir</string>
 
+    //nav bottom
+    <string name="nav_home">Home</string>
+    <string name="nav_jelajah">Jelajah</string>
+    <string name="nav_profil">Profil</string>
+
     //Onboard Screen
     //title
     <string name="onboard_title_1">Selamat Datang</string>

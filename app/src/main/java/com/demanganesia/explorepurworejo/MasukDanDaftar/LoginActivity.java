@@ -10,12 +10,18 @@ import android.provider.Settings;
 import android.view.View;
 import android.view.WindowManager;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.demanganesia.explorepurworejo.MainActivity;
 import com.demanganesia.explorepurworejo.R;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -45,7 +51,33 @@ public class LoginActivity extends AppCompatActivity {
 
         if (!validasiFormUsername() | !validasiFormKataSandi()){
             return;
-        } else {
+        }
+
+        String _username = ETUsername.getEditText().getText().toString().trim();
+        String _kataSandi = ETKataSandi.getEditText().getText().toString().trim();
+
+        Query cekUser = FirebaseDatabase.getInstance().getReference("Users").orderByChild("Username").equalTo(_username);
+        cekUser.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()){
+                    ETUsername.setError(null);
+                    ETUsername.setErrorEnabled(false);
+
+                    String cekSandi = dataSnapshot.child(_username).child("password").getValue(String.class);
+                    if(cekSandi.equals(_kataSandi)){
+                        ETKataSandi.setError(null);
+                        ETKataSandi.setErrorEnabled(false);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        }
+        else {
             startActivity(new Intent(getApplicationContext(), MainActivity.class));
         }
     }
