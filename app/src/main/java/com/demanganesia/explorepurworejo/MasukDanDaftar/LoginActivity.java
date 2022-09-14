@@ -3,12 +3,15 @@ package com.demanganesia.explorepurworejo.MasukDanDaftar;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -19,13 +22,18 @@ import com.demanganesia.explorepurworejo.R;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 public class LoginActivity extends AppCompatActivity {
 
-    TextInputLayout ETUsername, ETKataSandi;
+    TextInputLayout _ETUsername, _ETKataSandi;
+    Button btnMasuk;
+    DatabaseReference reference;
+
+    String USERNAME_KEY = "usernamekey";
+    String username_key = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,8 +43,52 @@ public class LoginActivity extends AppCompatActivity {
         //menghilangkan status bar
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        ETUsername = findViewById(R.id.ETusername);
-        ETKataSandi = findViewById(R.id.ETkata_sandi);
+        _ETUsername = findViewById(R.id.ETusername);
+        _ETKataSandi = findViewById(R.id.ETkata_sandi);
+        btnMasuk = findViewById(R.id.BtnMasuk);
+
+        btnMasuk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String username = _ETUsername.getEditText().getText().toString();
+                String kataSandi = _ETKataSandi.getEditText().getText().toString();
+                reference = FirebaseDatabase.getInstance().getReference().child("Users").child(username);
+
+                reference.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if(snapshot.exists()){
+
+                            //cek password
+                            String kataSandiDatabase = snapshot.child("password").getValue().toString();
+
+                            //validasi password
+                            if (kataSandi.equals(kataSandiDatabase)) {
+                                //ke main act
+                                Intent keMainAct = new Intent(LoginActivity.this, MainActivity.class);
+                                startActivity(keMainAct);
+
+                                //menyimpan username di local
+                                SharedPreferences sharedPreferences = getSharedPreferences(USERNAME_KEY, MODE_PRIVATE);
+                                SharedPreferences.Editor editor = sharedPreferences.edit();
+                                editor.putString(username_key, _ETUsername.getEditText().getText().toString());
+                                editor.apply();
+
+                            } else {
+                                Toast.makeText(getApplicationContext(), "Kata sandinya salah :(", Toast.LENGTH_SHORT).show();
+                            }
+                        } else {
+                            Toast.makeText(getApplicationContext(),"Akun tidak terdaftar, daftar dulu ya :)", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+            }
+        });
 
     }
     public void keDaftar(View view) {
@@ -45,41 +97,6 @@ public class LoginActivity extends AppCompatActivity {
 
     public void keLupaSandi(View view) {
         startActivity(new Intent(getApplicationContext(), LupaKataSandiActivity.class));
-    }
-
-    public void login(View view) {
-
-        if (!validasiFormUsername() | !validasiFormKataSandi()){
-            return;
-        }
-
-        String _username = ETUsername.getEditText().getText().toString().trim();
-        String _kataSandi = ETKataSandi.getEditText().getText().toString().trim();
-
-        Query cekUser = FirebaseDatabase.getInstance().getReference("Users").orderByChild("Username").equalTo(_username);
-        cekUser.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists()){
-                    ETUsername.setError(null);
-                    ETUsername.setErrorEnabled(false);
-
-                    String cekSandi = dataSnapshot.child(_username).child("password").getValue(String.class);
-                    if(cekSandi.equals(_kataSandi)){
-                        ETKataSandi.setError(null);
-                        ETKataSandi.setErrorEnabled(false);
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        }
-        else {
-            startActivity(new Intent(getApplicationContext(), MainActivity.class));
-        }
     }
 
     //Cek Koneksi Internet
@@ -117,50 +134,5 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 });
 
-    }
-
-    //validasi form username
-    private boolean validasiFormUsername() {
-        String val = ETUsername.getEditText().getText().toString().trim();
-        String cekSpasi = "\\A\\w{1,20}\\z";
-
-        if (val.isEmpty()) {
-            ETUsername.setError("Bagian ini tidak boleh kosong");
-            return false;
-        } else if(val.length()>20){
-            ETUsername.setError("Username terlalu panjang");
-            return false;
-        } else if(!val.matches(cekSpasi)) {
-            ETUsername.setError("Spasi tidak diperbolehkan");
-            return false;
-        }
-        else {
-            ETUsername.setError(null);
-            ETUsername.setErrorEnabled(false);
-            return true;
-        }
-    }
-
-    //validasi form kata sandi
-    private boolean validasiFormKataSandi() {
-        String val = ETKataSandi.getEditText().getText().toString().trim();
-        String cekKataSandi = "^"+
-                "(?=.*[a-zA-Z])"+   //semua karakter diperbolehkan
-                "(?=\\S+$)"+        //tidak boleh ada spasi
-                ".{4,}"+            //harus berisi minimal 4 karakter
-                "$";
-
-        if (val.isEmpty()) {
-            ETKataSandi.setError("Bagian ini tidak boleh kosong");
-            return false;
-        } else if(!val.matches(cekKataSandi)) {
-            ETKataSandi.setError("Tidak boleh ada spasi dan minimal berisi 4 karakter");
-            return false;
-        }
-        else {
-            ETKataSandi.setError(null);
-            ETKataSandi.setErrorEnabled(false);
-            return true;
-        }
     }
 }
