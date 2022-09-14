@@ -60,7 +60,7 @@ public class LoginActivity extends AppCompatActivity {
                         if(snapshot.exists()){
 
                             //cek password
-                            String kataSandiDatabase = snapshot.child("password").getValue().toString();
+                            String kataSandiDatabase = snapshot.child("kataSandi").getValue().toString();
 
                             //validasi password
                             if (kataSandi.equals(kataSandiDatabase)) {

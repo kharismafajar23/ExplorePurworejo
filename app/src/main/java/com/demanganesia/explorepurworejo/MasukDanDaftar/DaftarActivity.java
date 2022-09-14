@@ -15,6 +15,7 @@ public class DaftarActivity extends AppCompatActivity {
 
     TextInputLayout ETNamaLengkap, ETusername, ETemail, ETKataSandi;
     Button BtnDaftar;
+    String _namaLengkap, _username, _email, _kataSandi;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +37,20 @@ public class DaftarActivity extends AppCompatActivity {
         if (!validasiFormNamaLengkap() | !validasiFormUsername() | !validasiFormEmail() | !validasiFormKataSandi()){
             return;
         } else {
-            startActivity(new Intent(getApplicationContext(), Daftar2Activity.class));
+
+            _namaLengkap = ETNamaLengkap.getEditText().getText().toString().trim();
+            _username = ETusername.getEditText().getText().toString().trim();
+            _email = ETemail.getEditText().getText().toString().trim();
+            _kataSandi = ETKataSandi.getEditText().getText().toString().trim();
+
+            Intent intent = new Intent(DaftarActivity.this, Daftar2Activity.class);
+
+            intent.putExtra("namaLengkap", _namaLengkap);
+            intent.putExtra("username", _username);
+            intent.putExtra("email",_email);
+            intent.putExtra("kataSandi", _kataSandi);
+
+            startActivity(intent);
         }
     }
 

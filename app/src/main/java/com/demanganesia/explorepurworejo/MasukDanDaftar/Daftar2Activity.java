@@ -20,6 +20,7 @@ public class Daftar2Activity extends AppCompatActivity {
     RadioGroup radioGrup;
     RadioButton genderDipilih;
     DatePicker tanggalLahir;
+    String _namaLengkap, _username, _email, _kataSandi, _jenisKelamin, _tanggalLahir;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +31,11 @@ public class Daftar2Activity extends AppCompatActivity {
 
         radioGrup = findViewById(R.id.radio_grup);
         tanggalLahir = findViewById(R.id.DPtanggal_lahir);
+
+        _namaLengkap = getIntent().getStringExtra("namaLengkap");
+        _username = getIntent().getStringExtra("username");
+        _email = getIntent().getStringExtra("email");
+        _kataSandi = getIntent().getStringExtra("kataSandi");
     }
 
     public void keDaftar3(View view) {
@@ -39,15 +45,24 @@ public class Daftar2Activity extends AppCompatActivity {
         }
 
         genderDipilih = findViewById(radioGrup.getCheckedRadioButtonId());
-        String _gender = genderDipilih.getText().toString();
+        _jenisKelamin = genderDipilih.getText().toString();
 
         int day = tanggalLahir.getDayOfMonth();
         int month = tanggalLahir.getMonth();
         int year = tanggalLahir.getYear();
 
-        String _date = day+"/"+month+"/"+year;
+        _tanggalLahir = day+"/"+month+"/"+year;
 
-        startActivity(new Intent(getApplicationContext(), Daftar3Activity.class));
+        Intent intent = new Intent(Daftar2Activity.this, Daftar3Activity.class);
+
+        intent.putExtra("namaLengkap", _namaLengkap);
+        intent.putExtra("username", _username);
+        intent.putExtra("email",_email);
+        intent.putExtra("kataSandi", _kataSandi);
+        intent.putExtra("jenisKelamin", _jenisKelamin);
+        intent.putExtra("tanggalLahir", _tanggalLahir);
+
+        startActivity(intent);
     }
 
     public void keMasukb(View view) {

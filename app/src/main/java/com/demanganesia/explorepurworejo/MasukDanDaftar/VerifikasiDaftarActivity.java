@@ -1,5 +1,6 @@
 package com.demanganesia.explorepurworejo.MasukDanDaftar;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
@@ -9,16 +10,17 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.chaos.view.PinView;
+import com.demanganesia.explorepurworejo.Databases.UserHelperClass;
+import com.demanganesia.explorepurworejo.MainActivity;
 import com.demanganesia.explorepurworejo.R;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseException;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.concurrent.TimeUnit;
 
@@ -26,7 +28,7 @@ public class VerifikasiDaftarActivity extends AppCompatActivity {
 
     PinView kodePin;
     String codeBySystem;
-    String nomorTelefon;
+    String namaLengkapIni, usernameIni, emailIni, kataSandiIni, jenisKelaminIni, tanggalLahirIni, nomorTelefon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +38,15 @@ public class VerifikasiDaftarActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         kodePin = findViewById(R.id.kode_pin);
-        String nomorTelefon = getIntent().getStringExtra("nomorTelefonIni");
+        namaLengkapIni = getIntent().getStringExtra("namaLengkapIni");
+        usernameIni = getIntent().getStringExtra("usernameIni");
+        emailIni = getIntent().getStringExtra("emailIni");
+        kataSandiIni = getIntent().getStringExtra("kataSandiIni");
+        jenisKelaminIni = getIntent().getStringExtra("jenisKelaminIni");
+        tanggalLahirIni = getIntent().getStringExtra("tanggalLahirIni");
+        nomorTelefon = getIntent().getStringExtra("nomorTelefonIni");
+
+        //signInWithPhoneAuthCredential(nomorTelefon);
         signInWithPhoneAuthCredential(nomorTelefon);
     }
 
@@ -86,24 +96,33 @@ public class VerifikasiDaftarActivity extends AppCompatActivity {
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
 
         firebaseAuth.signInWithCredential(credential)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            Toast.makeText(VerifikasiDaftarActivity.this, "Verifikasi berhasil", Toast.LENGTH_SHORT).show();
-                        } else {
-                            if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
-                                Toast.makeText(VerifikasiDaftarActivity.this, "Verifikasi gagal, silahkan coba lagi", Toast.LENGTH_SHORT).show();
-                            }
+                .addOnCompleteListener(this, task -> {
+                    if (task.isSuccessful()) {
+                        kirimDataPenggunaBaru();
+                    } else {
+                        if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
+                            Toast.makeText(VerifikasiDaftarActivity.this, "Verifikasi gagal, silahkan coba lagi", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
     }
 
+    private void kirimDataPenggunaBaru() {
+
+        FirebaseDatabase rootNode = FirebaseDatabase.getInstance();
+        DatabaseReference reference = rootNode.getReference("Users");
+
+        UserHelperClass tambahPenggunaBaru = new UserHelperClass(namaLengkapIni, usernameIni, emailIni, kataSandiIni, jenisKelaminIni, tanggalLahirIni, nomorTelefon);
+        reference.child(usernameIni).setValue(tambahPenggunaBaru);
+    }
+
     public void btnVerifikasiKode(View view) {
         String code = kodePin.getText().toString();
-        if (!code.isEmpty()){
+        if (!code.isEmpty()) {
             verifikasiKode(code);
+            return;
+        } else {
+            startActivity(new Intent(getApplicationContext(), MainActivity.class));
         }
     }
 }

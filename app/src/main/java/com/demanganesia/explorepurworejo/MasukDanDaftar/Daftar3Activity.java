@@ -15,6 +15,7 @@ public class Daftar3Activity extends AppCompatActivity {
 
     TextInputLayout ETNomorTelefon;
     CountryCodePicker InputKodeNegara;
+    String _namaLengkap, _username, _email, _kataSandi, _tanggalLahir, _jenisKelamin, _inputNomorTelefon, _nomorTelefon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +26,6 @@ public class Daftar3Activity extends AppCompatActivity {
 
         ETNomorTelefon = findViewById(R.id.ETnomor_telefon);
         InputKodeNegara = findViewById(R.id.Inputkode_negara);
-
     }
 
     //validasi form nomor telefon
@@ -51,30 +51,30 @@ public class Daftar3Activity extends AppCompatActivity {
         startActivity(new Intent(getApplicationContext(), LoginActivity.class));
     }
 
-    //meunju verifikasi klik button daftar
+    //menuju verifikasi klik button daftar
     public void keVerifikasi(View view) {
         if (!validasiFormNomorTelepon()) {
             return;
         }
 
-        String _namaLengkap = getIntent().getStringExtra("namaLengkap");
-        String _username = getIntent().getStringExtra("username");
-        String _email = getIntent().getStringExtra("email");
-        String _kataSandi = getIntent().getStringExtra("kataSandi");
-        String _tanggalLahir = getIntent().getStringExtra("tanggalLahir");
-        String _jenisKelamin = getIntent().getStringExtra("jenisKelamin");
+        _namaLengkap = getIntent().getStringExtra("namaLengkap");
+        _username = getIntent().getStringExtra("username");
+        _email = getIntent().getStringExtra("email");
+        _kataSandi = getIntent().getStringExtra("kataSandi");
+        _tanggalLahir = getIntent().getStringExtra("tanggalLahir");
+        _jenisKelamin = getIntent().getStringExtra("jenisKelamin");
 
-        String _inputNomorTelefon = ETNomorTelefon.getEditText().getText().toString().trim();
-        String _nomorTelefon = "+"+InputKodeNegara.getSelectedCountryCode()+_inputNomorTelefon;
+        _inputNomorTelefon = ETNomorTelefon.getEditText().getText().toString().trim();
+        _nomorTelefon = "+"+InputKodeNegara.getSelectedCountryCode()+_inputNomorTelefon;
 
             Intent intent = new Intent(getApplicationContext(), VerifikasiDaftarActivity.class);
 
-            intent.putExtra("namaLengkap", _namaLengkap);
-            intent.putExtra("username", _username);
-            intent.putExtra("email", _email);
-            intent.putExtra("kataSandi", _kataSandi);
-            intent.putExtra("tanggalLahir", _tanggalLahir);
-            intent.putExtra("jenisKelamin", _jenisKelamin);
+            intent.putExtra("namaLengkapIni", _namaLengkap);
+            intent.putExtra("usernameIni", _username);
+            intent.putExtra("emailIni", _email);
+            intent.putExtra("kataSandiIni", _kataSandi);
+            intent.putExtra("tanggalLahirIni", _tanggalLahir);
+            intent.putExtra("jenisKelaminIni", _jenisKelamin);
             intent.putExtra("nomorTelefonIni", _nomorTelefon);
 
         startActivity(intent);
