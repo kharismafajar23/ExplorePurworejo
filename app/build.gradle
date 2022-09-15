@@ -32,7 +32,7 @@ android {
 dependencies {
 
 
-    implementation 'androidx.appcompat:appcompat:1.5.1'
+    implementation 'androidx.appcompat:appcompat:1.4.2'
     implementation 'com.google.android.material:material:1.6.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation 'com.google.firebase:firebase-database:20.0.6'
@@ -51,5 +51,9 @@ dependencies {
     implementation 'com.airbnb.android:lottie:3.4.1'
 
     implementation 'androidx.multidex:multidex:2.0.1'
+
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib:1.7.20-RC'
+    implementation 'com.github.ibrahimsn98:SmoothBottomBar:1.7.9'
+    //implementation 'nl.joery.animatedbottombar:library:1.1.0'
     
 }
