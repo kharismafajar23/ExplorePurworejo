@@ -1,11 +1,8 @@
 package com.demanganesia.explorepurworejo.MasukDanDaftar;
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.view.View;
@@ -57,8 +54,15 @@ public class LoginActivity extends AppCompatActivity {
                 reference.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        if(snapshot.exists()){
 
+//                        //cek koneksi ke internet
+//                        CekInternet cekInternet = new CekInternet();
+//                        if (!cekInternet.jikaTersambungKeInternet(LoginActivity.this)){
+//                            showCustomDialog();
+//                            return;
+//                        }
+
+                        if(snapshot.exists()){
                             //cek password
                             String kataSandiDatabase = snapshot.child("kataSandi").getValue().toString();
 
@@ -99,22 +103,6 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(new Intent(getApplicationContext(), LupaKataSandiActivity.class));
     }
 
-    //Cek Koneksi Internet
-    private boolean CekKoneksi(LoginActivity loginActivity) {
-
-        ConnectivityManager connectivityManager = (ConnectivityManager) loginActivity.getSystemService(Context.CONNECTIVITY_SERVICE);
-
-        NetworkInfo koneksiWifi = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
-        NetworkInfo koneksiDataSeluler = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
-
-        if((koneksiWifi != null && koneksiWifi.isConnected()) || (koneksiDataSeluler != null && koneksiDataSeluler.isConnected())){
-            return true;
-        }
-        else{
-            return false;
-        }
-    }
-
     private void showCustomDialog() {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
@@ -128,7 +116,7 @@ public class LoginActivity extends AppCompatActivity {
                 })
                 .setNegativeButton("Batal", new DialogInterface.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialog, int i) {
+                    public void onClick(DialogInterface dialogInterface, int i) {
                         startActivity(new Intent(getApplicationContext(), LoginActivity.class));
                         finish();
                     }

@@ -4,7 +4,7 @@ public class UserHelperClass {
 
     String namaLengkapIni, usernameIni, emailIni, kataSandiIni, jenisKelaminIni, tanggalLahirIni, nomorTelefonIni;
 
-    public UserHelperClass() {}
+    public UserHelperClass(String username, String nomorTelefon) {}
 
     public UserHelperClass(String nama_lengkap, String username, String email, String kata_sandi, String jenis_kelamin, String tanggal_lahir, String nomor_telefon) {
         this.namaLengkapIni = nama_lengkap;

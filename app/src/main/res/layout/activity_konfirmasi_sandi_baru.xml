@@ -44,6 +44,7 @@
             android:layout_marginTop="16px"/>
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/ETkata_sandi_baru"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -63,6 +64,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/ETkonfirmasi_kata_sandi_baru"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"

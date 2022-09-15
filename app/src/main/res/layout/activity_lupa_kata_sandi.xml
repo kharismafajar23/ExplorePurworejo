@@ -44,10 +44,43 @@
             android:layout_marginTop="16px"/>
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/ETusername"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:hint="@string/email"
+            android:hint="@string/username"
+            app:hintTextColor="@color/text_color"
+            app:boxStrokeColor="@color/text_color"
+            app:boxStrokeWidthFocused="1dp"
+            android:layout_marginTop="12dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_regular"
+                android:textColor="@color/text_color"
+                android:inputType="text"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.hbb20.CountryCodePicker
+            android:id="@+id/input_kode_negara"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            app:ccp_autoDetectCountry="true"
+            app:ccp_showFlag="true"
+            app:ccp_showNameCode="true"
+            app:ccp_showFullName="true"
+            android:background="@drawable/outline_hitam"
+            android:layout_marginTop="12dp"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/ETnomor_telefon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:hint="@string/no_telefon"
             app:hintTextColor="@color/text_color"
             app:boxStrokeColor="@color/text_color"
             app:boxStrokeWidthFocused="1dp"
@@ -58,7 +91,7 @@
                 android:layout_height="match_parent"
                 android:fontFamily="@font/poppins_regular"
                 android:textColor="@color/text_color"
-                android:inputType="textEmailAddress"/>
+                android:inputType="phone"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button

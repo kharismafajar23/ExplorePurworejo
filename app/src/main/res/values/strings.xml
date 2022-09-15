@@ -16,7 +16,7 @@
     <string name="daftar">Daftar</string>
     <string name="ingat_saya">Ingat saya</string>
     <string name="reset_kata_sandi">Reset Kata Sandi</string>
-    <string name="desc_reset_kata_sandi">Masukkan email yang digunakan\nuntuk mendaftar</string>
+    <string name="desc_reset_kata_sandi">Masukkan username dan nomor telefon\nyang digunakan untuk mendaftar</string>
     <string name="pilih_metode">Pilih Metode</string>
     <string name="desc_pilih_metode">Pilih metode untuk merubah\nkata sandi</string>
     <string name="sms">SMS</string>

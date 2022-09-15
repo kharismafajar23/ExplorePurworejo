@@ -46,7 +46,6 @@ public class VerifikasiDaftarActivity extends AppCompatActivity {
         tanggalLahirIni = getIntent().getStringExtra("tanggalLahirIni");
         nomorTelefon = getIntent().getStringExtra("nomorTelefonIni");
 
-        //signInWithPhoneAuthCredential(nomorTelefon);
         signInWithPhoneAuthCredential(nomorTelefon);
     }
 
