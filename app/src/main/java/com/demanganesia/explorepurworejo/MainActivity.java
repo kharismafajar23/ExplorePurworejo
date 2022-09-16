@@ -1,6 +1,7 @@
 package com.demanganesia.explorepurworejo;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
@@ -12,7 +13,6 @@ import androidx.fragment.app.FragmentTransaction;
 import com.demanganesia.explorepurworejo.Fragment.HomeFragment;
 import com.demanganesia.explorepurworejo.Fragment.JelajahFragment;
 import com.demanganesia.explorepurworejo.Fragment.ProfilFragment;
-import com.demanganesia.explorepurworejo.MasukDanDaftar.LoginActivity;
 import com.google.firebase.messaging.FirebaseMessaging;
 
 import me.ibrahimsn.lib.OnItemSelectedListener;
@@ -78,6 +78,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void keluarAkun(View view) {
-        startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+        // startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+
+        SharedPreferences preferences = getSharedPreferences("cekBox", MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("cekIngatSaya", "false");
+        editor.apply();
+        finish();
     }
 }

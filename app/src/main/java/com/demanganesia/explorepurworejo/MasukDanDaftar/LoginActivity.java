@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -45,6 +46,18 @@ public class LoginActivity extends AppCompatActivity {
         ETUsername2 = findViewById(R.id.ETusername2);
         ETKataSandi2 = findViewById(R.id.ETkata_sandi2);
 
+
+        //langsung ke main act jika sudah login
+        SharedPreferences preferences = getSharedPreferences("cekBox", MODE_PRIVATE);
+        String cekBox = preferences.getString("cekIngatSaya", "");
+
+        if(cekBox.equals("true")){
+            Intent langsungKeMain = new Intent(LoginActivity.this, MainActivity.class);
+            startActivity(langsungKeMain);
+        } else if (cekBox.equals("false")) {
+        }
+
+        //mengingat username dan kata sandi
         SharedPreferences sharedPreferences=getSharedPreferences("dataIngatSaya",MODE_PRIVATE);
         String username = sharedPreferences.getString("username","");
         String kataSandi = sharedPreferences.getString("kataSandi","");
@@ -106,7 +119,22 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        
+        cekBoxIngatsaya.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (buttonView.isChecked()) {
+                    SharedPreferences preferences = getSharedPreferences("cekBox", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = preferences.edit();
+                    editor.putString("cekIngatSaya", "true");
+                    editor.apply();
+                } else if (!buttonView.isChecked()) {
+                    SharedPreferences preferences = getSharedPreferences("cekBox", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = preferences.edit();
+                    editor.putString("cekIngatSaya", "false");
+                    editor.apply();
+                }
+            }
+        });
 
     }
 
