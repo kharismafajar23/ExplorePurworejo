@@ -1,21 +1,20 @@
 package com.demanganesia.explorepurworejo.MasukDanDaftar;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.demanganesia.explorepurworejo.MainActivity;
 import com.demanganesia.explorepurworejo.R;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -25,12 +24,11 @@ import com.google.firebase.database.ValueEventListener;
 
 public class LoginActivity extends AppCompatActivity {
 
-    TextInputLayout _ETUsername, _ETKataSandi;
+    TextInputLayout ETUsername, ETKataSandi;
+    TextInputEditText ETUsername2, ETKataSandi2;
     Button btnMasuk;
     DatabaseReference reference;
-
-    String USERNAME_KEY = "usernamekey";
-    String username_key = "";
+    CheckBox cekBoxIngatsaya;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,87 +38,90 @@ public class LoginActivity extends AppCompatActivity {
         //menghilangkan status bar
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        _ETUsername = findViewById(R.id.ETusername);
-        _ETKataSandi = findViewById(R.id.ETkata_sandi);
+        ETUsername = findViewById(R.id.ETusername);
+        ETKataSandi = findViewById(R.id.ETkata_sandi);
         btnMasuk = findViewById(R.id.BtnMasuk);
+        cekBoxIngatsaya = findViewById(R.id.ingat_saya);
+        ETUsername2 = findViewById(R.id.ETusername2);
+        ETKataSandi2 = findViewById(R.id.ETkata_sandi2);
+
+        SharedPreferences sharedPreferences=getSharedPreferences("dataIngatSaya",MODE_PRIVATE);
+        String username = sharedPreferences.getString("username","");
+        String kataSandi = sharedPreferences.getString("kataSandi","");
+
+        ETUsername2.setText(username);
+        ETKataSandi2.setText(kataSandi);
 
         btnMasuk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String username = _ETUsername.getEditText().getText().toString();
-                String kataSandi = _ETKataSandi.getEditText().getText().toString();
-                reference = FirebaseDatabase.getInstance().getReference().child("Users").child(username);
+
+                String _username = ETUsername.getEditText().getText().toString();
+                String _kataSandi = ETKataSandi.getEditText().getText().toString();
+                
+                if (cekBoxIngatsaya.isChecked()) {
+                    kirimDataKeLokal(_username, _kataSandi);
+                }
+
+                reference = FirebaseDatabase.getInstance().getReference().child("Users").child(_username);
 
                 reference.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.exists()) {
 
-//                        //cek koneksi ke internet
-//                        CekInternet cekInternet = new CekInternet();
-//                        if (!cekInternet.jikaTersambungKeInternet(LoginActivity.this)){
-//                            showCustomDialog();
-//                            return;
-//                        }
-
-                        if(snapshot.exists()){
-                            //cek password
-                            String kataSandiDatabase = snapshot.child("kataSandi").getValue().toString();
+                            //ambil password dari database
+                            String sandiDariDatabase = dataSnapshot.child("kataSandi").getValue().toString();
 
                             //validasi password
-                            if (kataSandi.equals(kataSandiDatabase)) {
+                            if (_kataSandi.equals(sandiDariDatabase)) {
                                 //ke main act
-                                Intent keMainAct = new Intent(LoginActivity.this, MainActivity.class);
-                                startActivity(keMainAct);
+                                Intent keMain = new Intent(LoginActivity.this, MainActivity.class);
+                                startActivity(keMain);
 
-                                //menyimpan username di local
-                                SharedPreferences sharedPreferences = getSharedPreferences(USERNAME_KEY, MODE_PRIVATE);
-                                SharedPreferences.Editor editor = sharedPreferences.edit();
-                                editor.putString(username_key, _ETUsername.getEditText().getText().toString());
-                                editor.apply();
-
+                                //password salah
                             } else {
-                                Toast.makeText(getApplicationContext(), "Kata sandinya salah :(", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(LoginActivity.this, "Kata sandi salah :(", Toast.LENGTH_SHORT).show();
+                                //ubah teks button
+                                btnMasuk.setText("Mulai sekarang");
                             }
+
+                        //username tidak ada
                         } else {
-                            Toast.makeText(getApplicationContext(),"Akun tidak terdaftar, daftar dulu ya :)", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, "Username tidak ada, daftar dulu ya :)", Toast.LENGTH_SHORT).show();
+                            //ubah teks button
+                            btnMasuk.setText("Mulai sekarang");
                         }
+
                     }
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
-
+                        Toast.makeText(LoginActivity.this, "Database Error", Toast.LENGTH_SHORT).show();
                     }
                 });
+
+                //ubah teks button
+                btnMasuk.setText("Tunggu sebentar...");
             }
         });
 
+        
+
     }
+
+    private void kirimDataKeLokal(String username, String kataSandi) {
+        SharedPreferences.Editor editor=getSharedPreferences("dataIngatSaya",MODE_PRIVATE).edit();
+        editor.putString("username", username);
+        editor.putString("kataSandi", kataSandi);
+        editor.apply();
+    }
+
     public void keDaftar(View view) {
         startActivity(new Intent(getApplicationContext(), DaftarActivity.class));
     }
 
     public void keLupaSandi(View view) {
         startActivity(new Intent(getApplicationContext(), LupaKataSandiActivity.class));
-    }
-
-    private void showCustomDialog() {
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
-        builder.setMessage("Pastikan tersambung ke internet")
-                .setCancelable(false)
-                .setPositiveButton("Sambungkan", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        startActivity(new Intent(Settings.ACTION_WIFI_SETTINGS));
-                    }
-                })
-                .setNegativeButton("Batal", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        startActivity(new Intent(getApplicationContext(), LoginActivity.class));
-                        finish();
-                    }
-                });
-
     }
 }

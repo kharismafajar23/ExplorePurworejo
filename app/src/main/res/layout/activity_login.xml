@@ -43,6 +43,7 @@
             android:layout_marginTop="35dp">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/ETusername2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_regular"
@@ -63,6 +64,7 @@
             android:layout_marginTop="12dp">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/ETkata_sandi2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_regular"
@@ -76,11 +78,12 @@
             android:layout_marginTop="4px">
 
             <CheckBox
+                android:id="@+id/ingat_saya"
                 style="@style/Widget.AppCompat.CompoundButton.CheckBox"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
                 android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
                 android:buttonTint="@color/text_color"
                 android:fontFamily="@font/poppins_medium"
                 android:text="@string/ingat_saya"
