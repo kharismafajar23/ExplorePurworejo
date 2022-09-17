@@ -1,7 +1,11 @@
 package com.demanganesia.explorepurworejo.MasukDanDaftar;
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.drawable.ColorDrawable;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
@@ -11,8 +15,10 @@ import android.widget.CompoundButton;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.demanganesia.explorepurworejo.HelperClasses.NoInternetDialog;
 import com.demanganesia.explorepurworejo.MainActivity;
 import com.demanganesia.explorepurworejo.R;
 import com.google.android.material.textfield.TextInputEditText;
@@ -46,7 +52,6 @@ public class LoginActivity extends AppCompatActivity {
         ETUsername2 = findViewById(R.id.ETusername2);
         ETKataSandi2 = findViewById(R.id.ETkata_sandi2);
 
-
         //langsung ke main act jika sudah login
         SharedPreferences preferences = getSharedPreferences("cekBox", MODE_PRIVATE);
         String cekBox = preferences.getString("cekIngatSaya", "");
@@ -68,6 +73,16 @@ public class LoginActivity extends AppCompatActivity {
         btnMasuk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                //cek koneksi internet
+                if (!cekInternet()) {
+
+                    //show dialog
+                    NoInternetDialog noInternetDialog = new NoInternetDialog(LoginActivity.this);
+                    noInternetDialog.setCancelable(false);
+                    noInternetDialog.getWindow().setBackgroundDrawable(new ColorDrawable(getResources().getColor(android.R.color.transparent)));
+                    noInternetDialog.show();
+                }
 
                 String _username = ETUsername.getEditText().getText().toString();
                 String _kataSandi = ETKataSandi.getEditText().getText().toString();
@@ -151,5 +166,31 @@ public class LoginActivity extends AppCompatActivity {
 
     public void keLupaSandi(View view) {
         startActivity(new Intent(getApplicationContext(), LupaKataSandiActivity.class));
+    }
+
+    private boolean cekInternet() {
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        return connectivityManager.getActiveNetworkInfo() != null && connectivityManager.getActiveNetworkInfo().isConnected();
+    }
+
+    protected void keluarAplikasi() {
+        AlertDialog alertDialog = new AlertDialog.Builder(this)
+                .setMessage("Kamu mau keluar dari aplikasi ini")
+                .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        System.exit(0);
+                    }
+                })
+                .setNegativeButton("tidak", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                }).show();
+    }
+    @Override
+    public void onBackPressed() {
+        keluarAplikasi();
     }
 }

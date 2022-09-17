@@ -71,4 +71,9 @@
     <string name="onboard_deskripsi_3">Setiap sudut Purworejo selalu\nmemberikan kenangan dan cerita\ntersendiri bagi kamu</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    //no connection
+    <string name="no_connection_title">Tidak ada koneksi internet</string>
+    <string name="no_connection_desc">Hubungkan ke internet untuk menggunakan aplikasi ini ya</string>
+    <string name="coba_lagi">Coba lagi</string>
 </resources>

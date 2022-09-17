@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -19,6 +20,9 @@ import me.ibrahimsn.lib.OnItemSelectedListener;
 import me.ibrahimsn.lib.SmoothBottomBar;
 
 public class MainActivity extends AppCompatActivity {
+
+    private long backPress;
+    private Toast backToast;
 
     SmoothBottomBar bottomBar;
 
@@ -85,5 +89,35 @@ public class MainActivity extends AppCompatActivity {
         editor.putString("cekIngatSaya", "false");
         editor.apply();
         finish();
+    }
+
+//    protected void keluarAplikasi() {
+//        AlertDialog alertDialog = new AlertDialog.Builder(this)
+//                .setMessage("Kamu mau keluar dari aplikasi ini")
+//                .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        System.exit(1);
+//                    }
+//                })
+//                .setNegativeButton("tidak", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//
+//                    }
+//                }).show();
+//    }
+    @Override
+    public void onBackPressed() {
+        //keluarAplikasi();
+        if (backPress + 2000 > System.currentTimeMillis()) {
+            backToast.cancel();
+            super.onBackPressed();
+            return;
+        }else{
+            backToast = Toast.makeText(getBaseContext(), "Tekan kembali dua kali untuk keluar", Toast.LENGTH_LONG);
+            backToast.show();
+        }
+        backPress = System.currentTimeMillis();
     }
 }
