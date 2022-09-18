@@ -95,7 +95,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
-            android:id="@+id/btnDaftar"
+            android:id="@+id/btnSelanjutnya"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/selanjutnya"
@@ -105,7 +105,7 @@
             android:textAllCaps="false"
             android:background="@drawable/bg_button"
             android:layout_marginTop="52dp"
-            android:onClick="keLupaSandi2"/>
+            android:onClick="keVerifikasiLupaSandi"/>
 
     </LinearLayout>
 

@@ -44,6 +44,7 @@
             android:layout_marginTop="16px"/>
 
         <com.chaos.view.PinView
+            android:id="@+id/OTP_lupa_sandi"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:itemCount="6"
@@ -64,7 +65,7 @@
             app:lineWidth="1dp"/>
 
         <Button
-            android:id="@+id/btnDaftar"
+            android:id="@+id/btn_verifikasi_kode"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/verifikasi_kode"

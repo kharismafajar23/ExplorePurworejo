@@ -39,9 +39,10 @@ public class VerifikasiLupaSandiActivity extends AppCompatActivity {
         //menghilangkan status bar
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        kodePin = findViewById(R.id.kode_pin);
+        kodePin = findViewById(R.id.OTP_lupa_sandi);
         username = getIntent().getStringExtra("username");
         nomorTelefon = getIntent().getStringExtra("nomorTelefon");
+        whatTodo = getIntent().getStringExtra("whatTodo");
 
         signInWithPhoneAuthCredential(nomorTelefon);
 
@@ -97,15 +98,29 @@ public class VerifikasiLupaSandiActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            kirimDataPenggunaBaru();
+                            if (whatTodo.equals("updateData")) {
+                                updateDataUserLama();
+                            } else {
+                                kirimDataPenggunaBaru();
+                            }
                         } else {
                             if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
                                 Toast.makeText(VerifikasiLupaSandiActivity.this, "Verifikasi gagal, silahkan coba lagi", Toast.LENGTH_SHORT).show();
                             }
                         }
-                        startActivity(new Intent(getApplicationContext(), SuksesMendaftar.class));
+                        //startActivity(new Intent(getApplicationContext(), KonfirmasiSandiBaruActivity.class));
                     }
                 });
+    }
+
+    private void updateDataUserLama() {
+
+        Intent intent = new Intent(getApplicationContext(), KonfirmasiSandiBaruActivity.class);
+        intent.putExtra("username", username);
+        intent.putExtra("nomorTelefon", nomorTelefon);
+        startActivity(intent);
+        finish();
+
     }
 
     private void kirimDataPenggunaBaru() {
@@ -117,7 +132,7 @@ public class VerifikasiLupaSandiActivity extends AppCompatActivity {
         reference.child(username).setValue(tambahPenggunaBaru);
     }
 
-    public void btnVerifikasiKode(View view) {
+    public void keKonfirmasiSandiBaru(View view) {
         String code = kodePin.getText().toString();
         if (!code.isEmpty()) {
             verifikasiKode(code);

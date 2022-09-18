@@ -36,8 +36,7 @@ public class LupaKataSandiActivity extends AppCompatActivity {
 
     }
 
-    public void keLupaSandi2(View view) {
-
+    public void keVerifikasiLupaSandi(View view) {
 
         //get data
         _username = ETusername.getEditText().getText().toString().trim();
@@ -74,7 +73,7 @@ public class LupaKataSandiActivity extends AppCompatActivity {
                         EtnomorTelefon.requestFocus();
                     }
 
-                //username tidak ada
+                    //username tidak ada
                 } else {
                     ETusername.setError("Username tidak terdaftar");
                     ETusername.requestFocus();
