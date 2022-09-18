@@ -12,12 +12,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ExplorePurworejo">
+        <activity
+            android:name=".MasukDanDaftar.SuksesMendaftar"
+            android:exported="false" />
+
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
-            android:resource="@drawable/ic_logo_ep"/>
+            android:resource="@drawable/ic_logo_ep" />
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_color"
-            android:resource="@color/hijau"/>
+            android:resource="@color/hijau" />
+
         <activity
             android:name=".InformasiAkun"
             android:exported="false" />

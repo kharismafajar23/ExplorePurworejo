@@ -1,5 +1,6 @@
 package com.demanganesia.explorepurworejo;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -7,6 +8,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
@@ -91,33 +93,34 @@ public class MainActivity extends AppCompatActivity {
         finish();
     }
 
-//    protected void keluarAplikasi() {
-//        AlertDialog alertDialog = new AlertDialog.Builder(this)
-//                .setMessage("Kamu mau keluar dari aplikasi ini")
-//                .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialog, int which) {
-//                        System.exit(1);
-//                    }
-//                })
-//                .setNegativeButton("tidak", new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialog, int which) {
-//
-//                    }
-//                }).show();
-//    }
+    protected void keluarAplikasi() {
+        AlertDialog alertDialog = new AlertDialog.Builder(this)
+                .setMessage("Kamu mau keluar dari aplikasi ini")
+                .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                        System.exit(0);
+                    }
+                })
+                .setNegativeButton("tidak", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                }).show();
+    }
     @Override
     public void onBackPressed() {
-        //keluarAplikasi();
-        if (backPress + 2000 > System.currentTimeMillis()) {
-            backToast.cancel();
-            super.onBackPressed();
-            return;
-        }else{
-            backToast = Toast.makeText(getBaseContext(), "Tekan kembali dua kali untuk keluar", Toast.LENGTH_LONG);
-            backToast.show();
-        }
-        backPress = System.currentTimeMillis();
+        keluarAplikasi();
+//        if (backPress + 2000 > System.currentTimeMillis()) {
+//            backToast.cancel();
+//            super.onBackPressed();
+//            return;
+//        }else{
+//            backToast = Toast.makeText(getBaseContext(), "Tekan kembali dua kali untuk keluar", Toast.LENGTH_LONG);
+//            backToast.show();
+//        }
+//        backPress = System.currentTimeMillis();
     }
 }

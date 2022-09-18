@@ -69,13 +69,13 @@ public class Daftar3Activity extends AppCompatActivity {
 
             Intent intent = new Intent(getApplicationContext(), VerifikasiDaftarActivity.class);
 
-            intent.putExtra("namaLengkapIni", _namaLengkap);
-            intent.putExtra("usernameIni", _username);
-            intent.putExtra("emailIni", _email);
-            intent.putExtra("kataSandiIni", _kataSandi);
-            intent.putExtra("tanggalLahirIni", _tanggalLahir);
-            intent.putExtra("jenisKelaminIni", _jenisKelamin);
-            intent.putExtra("nomorTelefonIni", _nomorTelefon);
+            intent.putExtra("namaLengkap", _namaLengkap);
+            intent.putExtra("username", _username);
+            intent.putExtra("email", _email);
+            intent.putExtra("kataSandi", _kataSandi);
+            intent.putExtra("tanggalLahir", _tanggalLahir);
+            intent.putExtra("jenisKelamin", _jenisKelamin);
+            intent.putExtra("nomorTelefon", _nomorTelefon);
 
         startActivity(intent);
         }

@@ -29,6 +29,8 @@
     <string name="keluar_akun">Keluar akun</string>
     <string name="mau_kemana_hari_ini">Mau kemana hari ini ?</string>
     <string name="hai">Hai,</string>
+    <string name="pendaftaran_berhasil">Pendaftaran Berhasil</string>
+    <string name="pendaftaran_berhasil_desc">Silahkan masuk dengan akun yang berhasil didaftarkan</string>
 
     <string name="buat_akun">Buat Akun</string>
     <string name="selanjutnya">Selanjutnya</string>

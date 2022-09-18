@@ -10,9 +10,12 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.chaos.view.PinView;
-import com.demanganesia.explorepurworejo.Databases.UserHelperClass;
+import com.demanganesia.explorepurworejo.Databases.UserHelperClassLupaSandi;
 import com.demanganesia.explorepurworejo.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseException;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.PhoneAuthCredential;
@@ -36,13 +39,9 @@ public class VerifikasiLupaSandiActivity extends AppCompatActivity {
         //menghilangkan status bar
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-
         kodePin = findViewById(R.id.kode_pin);
-
-        //get data dari intent
         username = getIntent().getStringExtra("username");
         nomorTelefon = getIntent().getStringExtra("nomorTelefon");
-        whatTodo = getIntent().getStringExtra("whatToDo");
 
         signInWithPhoneAuthCredential(nomorTelefon);
 
@@ -50,17 +49,15 @@ public class VerifikasiLupaSandiActivity extends AppCompatActivity {
 
     private void signInWithPhoneAuthCredential(String nomorTelefon) {
 
+        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
 
-        FirebaseAuth mAuth = FirebaseAuth.getInstance();
-
-        PhoneAuthOptions options = PhoneAuthOptions.newBuilder(mAuth)
+        PhoneAuthOptions options = PhoneAuthOptions.newBuilder(firebaseAuth)
                 .setPhoneNumber(nomorTelefon)       // Phone number to verify
                 .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
                 .setActivity(this)                 // Activity (for callback binding)
                 .setCallbacks(mCallbacks)          // OnVerificationStateChangedCallbacks
                 .build();
         PhoneAuthProvider.verifyPhoneNumber(options);
-
     }
 
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks =
@@ -74,7 +71,7 @@ public class VerifikasiLupaSandiActivity extends AppCompatActivity {
                 @Override
                 public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
                     String code = phoneAuthCredential.getSmsCode();
-                    if (code != null) {
+                    if (code!=null){
                         kodePin.setText(code);
                         verifikasiKode(code);
                     }
@@ -87,7 +84,7 @@ public class VerifikasiLupaSandiActivity extends AppCompatActivity {
             };
 
     private void verifikasiKode(String code) {
-        PhoneAuthCredential credential = PhoneAuthProvider.getCredential(codeBySystem, code);
+        PhoneAuthCredential credential = PhoneAuthProvider.getCredential(codeBySystem,code);
         signInWithPhoneAuthCredential(credential);
     }
 
@@ -96,28 +93,19 @@ public class VerifikasiLupaSandiActivity extends AppCompatActivity {
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
 
         firebaseAuth.signInWithCredential(credential)
-                .addOnCompleteListener(this, task -> {
-                    if (task.isSuccessful()) {
-                        if (whatTodo.equals("updateData")) {
-                            updateDataLama();
-                        } else {
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
                             kirimDataPenggunaBaru();
+                        } else {
+                            if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
+                                Toast.makeText(VerifikasiLupaSandiActivity.this, "Verifikasi gagal, silahkan coba lagi", Toast.LENGTH_SHORT).show();
+                            }
                         }
-                    } else {
-                        if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
-                            Toast.makeText(VerifikasiLupaSandiActivity.this, "Verifikasi gagal, silahkan coba lagi", Toast.LENGTH_SHORT).show();
-                        }
+                        startActivity(new Intent(getApplicationContext(), SuksesMendaftar.class));
                     }
                 });
-    }
-
-    private void updateDataLama() {
-
-        Intent intent = new Intent(getApplicationContext(), KonfirmasiSandiBaruActivity.class);
-        intent.putExtra("username", username);
-        intent.putExtra("nomorTelefon", nomorTelefon);
-        startActivity(intent);
-        finish();
     }
 
     private void kirimDataPenggunaBaru() {
@@ -125,17 +113,15 @@ public class VerifikasiLupaSandiActivity extends AppCompatActivity {
         FirebaseDatabase rootNode = FirebaseDatabase.getInstance();
         DatabaseReference reference = rootNode.getReference("Users");
 
-        UserHelperClass tambahPenggunaBaru = new UserHelperClass(username, nomorTelefon);
+        UserHelperClassLupaSandi tambahPenggunaBaru = new UserHelperClassLupaSandi(username, nomorTelefon);
         reference.child(username).setValue(tambahPenggunaBaru);
     }
 
-    public void keKonfirmasiSandiBaru(View view) {
+    public void btnVerifikasiKode(View view) {
         String code = kodePin.getText().toString();
         if (!code.isEmpty()) {
             verifikasiKode(code);
             return;
-        } else {
-            startActivity(new Intent(getApplicationContext(), KonfirmasiSandiBaruActivity.class));
         }
     }
 }

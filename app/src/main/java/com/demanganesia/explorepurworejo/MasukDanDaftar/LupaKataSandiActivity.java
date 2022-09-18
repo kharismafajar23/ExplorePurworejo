@@ -45,23 +45,39 @@ public class LupaKataSandiActivity extends AppCompatActivity {
         _nomorTelefon = "+"+kodeNegara.getSelectedCountryCode()+_inputNomorTelefon;
 
         //cek user di database
-        Query cekUser = FirebaseDatabase.getInstance().getReference("Users").orderByChild("nomorTelefon").equalTo(_nomorTelefon);
+        Query cekUser = FirebaseDatabase.getInstance().getReference("Users").child(_username);
         cekUser.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
-                    EtnomorTelefon.setError(null);
-                    EtnomorTelefon.setErrorEnabled(false);
+                    //ambil nomor telefon dari database
+                    String nomorTelefonDariDatabase = dataSnapshot.child("nomorTelefon").getValue().toString();
 
-                    Intent intent = new Intent(getApplicationContext(), VerifikasiLupaSandiActivity.class);
-                    intent.putExtra("username", _username);
-                    intent.putExtra("nomorTelefon", _nomorTelefon);
-                    intent.putExtra("whatTodo", "updateData");
-                    startActivity(intent);
-                    finish();
+                    //validasi nomor telefon
+                    if (_nomorTelefon.equals(nomorTelefonDariDatabase)) {
+                        //ke verifikasi
+                        EtnomorTelefon.setError(null);
+                        EtnomorTelefon.setErrorEnabled(false);
+
+                        Intent intent = new Intent(getApplicationContext(), VerifikasiLupaSandiActivity.class);
+                        intent.putExtra("username", _username);
+                        intent.putExtra("nomorTelefon", _nomorTelefon);
+                        intent.putExtra("whatTodo", "updateData");
+                        startActivity(intent);
+                        finish();
+
+                        //nomor telefon tidak ada
+                    } else {
+                        ETusername.setError(null);
+                        ETusername.setErrorEnabled(false);
+                        EtnomorTelefon.setError("Nomor telefon tidak terdaftar");
+                        EtnomorTelefon.requestFocus();
+                    }
+
+                //username tidak ada
                 } else {
-                    EtnomorTelefon.setError("Nomor telefon tidak terdaftar");
-                    EtnomorTelefon.requestFocus();
+                    ETusername.setError("Username tidak terdaftar");
+                    ETusername.requestFocus();
                 }
             }
 

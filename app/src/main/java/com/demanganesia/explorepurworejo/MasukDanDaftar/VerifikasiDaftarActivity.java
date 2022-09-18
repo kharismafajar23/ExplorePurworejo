@@ -11,9 +11,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.chaos.view.PinView;
 import com.demanganesia.explorepurworejo.Databases.UserHelperClass;
-import com.demanganesia.explorepurworejo.MainActivity;
 import com.demanganesia.explorepurworejo.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseException;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.PhoneAuthCredential;
@@ -28,7 +30,7 @@ public class VerifikasiDaftarActivity extends AppCompatActivity {
 
     PinView kodePin;
     String codeBySystem;
-    String namaLengkapIni, usernameIni, emailIni, kataSandiIni, jenisKelaminIni, tanggalLahirIni, nomorTelefon;
+    String namaLengkap, username, email, kataSandi, jenisKelamin, tanggalLahir, nomorTelefon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,22 +40,22 @@ public class VerifikasiDaftarActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         kodePin = findViewById(R.id.kode_pin);
-        namaLengkapIni = getIntent().getStringExtra("namaLengkapIni");
-        usernameIni = getIntent().getStringExtra("usernameIni");
-        emailIni = getIntent().getStringExtra("emailIni");
-        kataSandiIni = getIntent().getStringExtra("kataSandiIni");
-        jenisKelaminIni = getIntent().getStringExtra("jenisKelaminIni");
-        tanggalLahirIni = getIntent().getStringExtra("tanggalLahirIni");
-        nomorTelefon = getIntent().getStringExtra("nomorTelefonIni");
+        namaLengkap = getIntent().getStringExtra("namaLengkap");
+        username = getIntent().getStringExtra("username");
+        email = getIntent().getStringExtra("email");
+        kataSandi = getIntent().getStringExtra("kataSandi");
+        jenisKelamin = getIntent().getStringExtra("jenisKelamin");
+        tanggalLahir = getIntent().getStringExtra("tanggalLahir");
+        nomorTelefon = getIntent().getStringExtra("nomorTelefon");
 
         signInWithPhoneAuthCredential(nomorTelefon);
     }
 
     private void signInWithPhoneAuthCredential(String nomorTelefon) {
 
-        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
 
-        PhoneAuthOptions options = PhoneAuthOptions.newBuilder(mAuth)
+        PhoneAuthOptions options = PhoneAuthOptions.newBuilder(firebaseAuth)
                         .setPhoneNumber(nomorTelefon)       // Phone number to verify
                         .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
                         .setActivity(this)                 // Activity (for callback binding)
@@ -95,13 +97,17 @@ public class VerifikasiDaftarActivity extends AppCompatActivity {
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
 
         firebaseAuth.signInWithCredential(credential)
-                .addOnCompleteListener(this, task -> {
-                    if (task.isSuccessful()) {
-                        kirimDataPenggunaBaru();
-                    } else {
-                        if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
-                            Toast.makeText(VerifikasiDaftarActivity.this, "Verifikasi gagal, silahkan coba lagi", Toast.LENGTH_SHORT).show();
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            kirimDataPenggunaBaru();
+                        } else {
+                            if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
+                                Toast.makeText(VerifikasiDaftarActivity.this, "Verifikasi gagal, silahkan coba lagi", Toast.LENGTH_SHORT).show();
+                            }
                         }
+                        startActivity(new Intent(getApplicationContext(), SuksesMendaftar.class));
                     }
                 });
     }
@@ -111,8 +117,8 @@ public class VerifikasiDaftarActivity extends AppCompatActivity {
         FirebaseDatabase rootNode = FirebaseDatabase.getInstance();
         DatabaseReference reference = rootNode.getReference("Users");
 
-        UserHelperClass tambahPenggunaBaru = new UserHelperClass(namaLengkapIni, usernameIni, emailIni, kataSandiIni, jenisKelaminIni, tanggalLahirIni, nomorTelefon);
-        reference.child(usernameIni).setValue(tambahPenggunaBaru);
+        UserHelperClass tambahPenggunaBaru = new UserHelperClass(namaLengkap, username, email, kataSandi, jenisKelamin, tanggalLahir, nomorTelefon);
+        reference.child(username).setValue(tambahPenggunaBaru);
     }
 
     public void btnVerifikasiKode(View view) {
@@ -120,8 +126,6 @@ public class VerifikasiDaftarActivity extends AppCompatActivity {
         if (!code.isEmpty()) {
             verifikasiKode(code);
             return;
-        } else {
-            startActivity(new Intent(getApplicationContext(), MainActivity.class));
         }
     }
 }

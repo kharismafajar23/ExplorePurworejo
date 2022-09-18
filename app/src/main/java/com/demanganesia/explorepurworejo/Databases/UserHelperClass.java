@@ -2,73 +2,71 @@ package com.demanganesia.explorepurworejo.Databases;
 
 public class UserHelperClass {
 
-    String namaLengkapIni, usernameIni, emailIni, kataSandiIni, jenisKelaminIni, tanggalLahirIni, nomorTelefonIni;
+    String namaLengkap, username, email, kataSandi, jenisKelamin, tanggalLahir, nomorTelefon;
 
-    public UserHelperClass(String username, String nomorTelefon) {}
-
-    public UserHelperClass(String nama_lengkap, String username, String email, String kata_sandi, String jenis_kelamin, String tanggal_lahir, String nomor_telefon) {
-        this.namaLengkapIni = nama_lengkap;
-        this.usernameIni = username;
-        this.emailIni = email;
-        this.kataSandiIni = kata_sandi;
-        this.jenisKelaminIni = jenis_kelamin;
-        this.tanggalLahirIni = tanggal_lahir;
-        this.nomorTelefonIni = nomor_telefon;
+    public UserHelperClass(String namaLengkap, String username, String email, String kataSandi, String jenisKelamin, String tanggalLahir, String nomorTelefon) {
+        this.namaLengkap = namaLengkap;
+        this.username = username;
+        this.email = email;
+        this.kataSandi = kataSandi;
+        this.jenisKelamin = jenisKelamin;
+        this.tanggalLahir = tanggalLahir;
+        this.nomorTelefon = nomorTelefon;
     }
 
     public String getNamaLengkap() {
-        return namaLengkapIni;
+        return namaLengkap;
     }
 
-    public void setNamaLengkap(String nama_lengkap) {
-        this.namaLengkapIni = nama_lengkap;
+    public void setNamaLengkap(String namaLengkap) {
+        this.namaLengkap = namaLengkap;
     }
 
     public String getUsername() {
-        return usernameIni;
+        return username;
     }
 
     public void setUsername(String username) {
-        this.usernameIni = username;
+        this.username = username;
     }
 
     public String getEmail() {
-        return emailIni;
+        return email;
     }
 
     public void setEmail(String email) {
-        this.emailIni = email;
+        this.email = email;
     }
 
     public String getKataSandi() {
-        return kataSandiIni;
+        return kataSandi;
     }
 
-    public void setKataSandi(String kata_sandi) {
-        this.kataSandiIni = kata_sandi;
+    public void setKataSandi(String kataSandi) {
+        this.kataSandi = kataSandi;
     }
 
     public String getJenisKelamin() {
-        return jenisKelaminIni;
+        return jenisKelamin;
     }
 
-    public void setJenisKelamin(String jenis_kelamin) {
-        this.jenisKelaminIni = jenis_kelamin;
+    public void setJenisKelamin(String jenisKelamin) {
+        this.jenisKelamin = jenisKelamin;
     }
 
     public String getTanggalLahir() {
-        return tanggalLahirIni;
+        return tanggalLahir;
     }
 
-    public void setTanggalLahir(String tanggal_lahir) {
-        this.tanggalLahirIni = tanggal_lahir;
+    public void setTanggalLahir(String tanggalLahir) {
+        this.tanggalLahir = tanggalLahir;
     }
 
     public String getNomorTelefon() {
-        return nomorTelefonIni;
+        return nomorTelefon;
     }
 
-    public void setNomorTelefon(String nomor_telefon) {
-        this.nomorTelefonIni = nomor_telefon;
+    public void setNomorTelefon(String nomorTelefon) {
+        this.nomorTelefon = nomorTelefon;
     }
 }
