@@ -233,7 +233,7 @@
                 android:layout_marginTop="28dp"/>
 
             <DatePicker
-                android:id="@+id/DPtanggal_lahir"
+                android:id="@+id/DPtanggal_lahir_EP"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:datePickerMode="spinner"
