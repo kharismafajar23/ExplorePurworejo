@@ -14,6 +14,7 @@
     <string name="sudah_punya_akun">Sudah Punya Akun?</string>
     <string name="masuk">Masuk</string>
     <string name="daftar">Daftar</string>
+    <string name="simpan">Simpan</string>
     <string name="ingat_saya">Ingat saya</string>
     <string name="reset_kata_sandi">Reset Kata Sandi</string>
     <string name="desc_reset_kata_sandi">Masukkan username dan nomor telefon\nyang digunakan untuk mendaftar</string>
@@ -38,6 +39,7 @@
     <string name="nama_lengkap">Nama Lengkap</string>
     <string name="username">Username</string>
     <string name="email">Email</string>
+    <string name="bio">Bio</string>
     <string name="kata_sandi">Kata Sandi</string>
     <string name="komfirmasi_kata_sandi_baru">Konfirmasi Kata Sandi Baru</string>
     <string name="konfirmasi_kata_sandi">Konfirmasi kata Sandi</string>

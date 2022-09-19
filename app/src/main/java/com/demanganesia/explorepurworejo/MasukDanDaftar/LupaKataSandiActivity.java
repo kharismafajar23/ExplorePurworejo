@@ -50,7 +50,7 @@ public class LupaKataSandiActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
                     //ambil nomor telefon dari database
-                    String nomorTelefonDariDatabase = dataSnapshot.child("nomorTelefon").getValue().toString();
+                    String nomorTelefonDariDatabase = dataSnapshot.child("nomor_telefon").getValue().toString();
 
                     //validasi nomor telefon
                     if (_nomorTelefon.equals(nomorTelefonDariDatabase)) {

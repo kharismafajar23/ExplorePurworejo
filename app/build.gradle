@@ -54,6 +54,7 @@ dependencies {
 
     implementation 'androidx.multidex:multidex:2.0.1'
 
+    //bottom navigation bar
     implementation 'org.jetbrains.kotlin:kotlin-stdlib:1.7.20-RC'
     implementation 'com.github.ibrahimsn98:SmoothBottomBar:1.7.9'
     //implementation 'nl.joery.animatedbottombar:library:1.1.0'

@@ -1,7 +1,6 @@
 package com.demanganesia.explorepurworejo;
 
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
@@ -66,21 +65,6 @@ public class MainActivity extends AppCompatActivity {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.frame,fragment);
         transaction.commit();
-    }
-
-    public void keTentangAplikasi(View view) {
-        startActivity(new Intent(getApplicationContext(), TentangAplikasi.class));
-    }
-
-    public void keSyaratDanKetentuan(View view) {
-        startActivity(new Intent(getApplicationContext(), SyaratDanKetentuan.class));
-    }
-
-    public void keInformasiAkun(View view) {
-        startActivity(new Intent(getApplicationContext(), InformasiAkun.class));
-    }
-
-    public void keEditProfil(View view) {
     }
 
     public void keluarAkun(View view) {

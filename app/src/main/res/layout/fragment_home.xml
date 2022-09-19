@@ -42,7 +42,7 @@
                     android:layout_height="wrap_content"/>
 
                 <TextView
-                    android:id="@+id/TVusername"
+                    android:id="@+id/TVusername_home"
                     android:text="@string/username"
                     android:textSize="20sp"
                     android:textColor="@color/hijau"

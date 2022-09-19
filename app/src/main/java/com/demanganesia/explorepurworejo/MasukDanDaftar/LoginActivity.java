@@ -37,6 +37,11 @@ public class LoginActivity extends AppCompatActivity {
     DatabaseReference reference;
     CheckBox cekBoxIngatsaya;
 
+    String USERNAME_KEY_LOCAL = "usernamekeylocal";
+    String username_key_local = "";
+    String username_key_local2 = "";
+    String username_key_new_local = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -99,15 +104,22 @@ public class LoginActivity extends AppCompatActivity {
                         if (dataSnapshot.exists()) {
 
                             //ambil password dari database
-                            String sandiDariDatabase = dataSnapshot.child("kataSandi").getValue().toString();
+                            String sandiDariDatabase = dataSnapshot.child("kata_sandi").getValue().toString();
 
                             //validasi password
                             if (_kataSandi.equals(sandiDariDatabase)) {
+
+                                //menyimpan username ke lokal
+                                SharedPreferences sharedPreferences = getSharedPreferences(USERNAME_KEY_LOCAL, MODE_PRIVATE);
+                                SharedPreferences.Editor editor = sharedPreferences.edit();
+                                editor.putString(username_key_local, ETUsername.getEditText().getText().toString());
+                                editor.apply();
+
                                 //ke main act
                                 Intent keMain = new Intent(LoginActivity.this, MainActivity.class);
                                 startActivity(keMain);
 
-                                //password salah
+                            //password salah
                             } else {
                                 Toast.makeText(LoginActivity.this, "Kata sandi salah :(", Toast.LENGTH_SHORT).show();
                                 //ubah teks button
@@ -193,4 +205,5 @@ public class LoginActivity extends AppCompatActivity {
     public void onBackPressed() {
         keluarAplikasi();
     }
+
 }

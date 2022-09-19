@@ -30,7 +30,7 @@ public class VerifikasiDaftarActivity extends AppCompatActivity {
 
     PinView kodePin;
     String codeBySystem;
-    String namaLengkap, username, email, kataSandi, jenisKelamin, tanggalLahir, nomorTelefon;
+    String namaLengkap, username, email, kataSandi, jenisKelamin, tanggalLahir, nomorTelefon, bio, urlFotoProfil;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +47,8 @@ public class VerifikasiDaftarActivity extends AppCompatActivity {
         jenisKelamin = getIntent().getStringExtra("jenisKelamin");
         tanggalLahir = getIntent().getStringExtra("tanggalLahir");
         nomorTelefon = getIntent().getStringExtra("nomorTelefon");
+        bio = "";
+        urlFotoProfil = "";
 
         signInWithPhoneAuthCredential(nomorTelefon);
     }
@@ -102,12 +104,12 @@ public class VerifikasiDaftarActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             kirimDataPenggunaBaru();
+                            startActivity(new Intent(getApplicationContext(), SuksesMendaftar.class));
                         } else {
                             if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
                                 Toast.makeText(VerifikasiDaftarActivity.this, "Verifikasi gagal, silahkan coba lagi", Toast.LENGTH_SHORT).show();
                             }
                         }
-                        startActivity(new Intent(getApplicationContext(), SuksesMendaftar.class));
                     }
                 });
     }
@@ -117,7 +119,7 @@ public class VerifikasiDaftarActivity extends AppCompatActivity {
         FirebaseDatabase rootNode = FirebaseDatabase.getInstance();
         DatabaseReference reference = rootNode.getReference("Users");
 
-        UserHelperClass tambahPenggunaBaru = new UserHelperClass(namaLengkap, username, email, kataSandi, jenisKelamin, tanggalLahir, nomorTelefon);
+        UserHelperClass tambahPenggunaBaru = new UserHelperClass(namaLengkap, username, email, kataSandi, jenisKelamin, tanggalLahir, nomorTelefon, bio, urlFotoProfil);
         reference.child(username).setValue(tambahPenggunaBaru);
     }
 

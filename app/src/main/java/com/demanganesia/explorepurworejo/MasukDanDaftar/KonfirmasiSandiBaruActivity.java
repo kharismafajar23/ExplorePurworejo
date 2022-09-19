@@ -58,7 +58,7 @@ public class KonfirmasiSandiBaruActivity extends AppCompatActivity {
 
         //update kata sandi di database
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users");
-        reference.child(_username).child("kataSandi").setValue(_kataSandiBaru);
+        reference.child(_username).child("kata_sandi").setValue(_kataSandiBaru);
 
         startActivity(new Intent(getApplicationContext(), SuksesUpdateSandiActivity.class));
         finish();
