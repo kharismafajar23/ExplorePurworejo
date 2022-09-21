@@ -2,6 +2,7 @@ package com.demanganesia.explorepurworejo.Fragment;
 
 import static android.content.Context.MODE_PRIVATE;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -18,6 +20,7 @@ import androidx.fragment.app.Fragment;
 
 import com.demanganesia.explorepurworejo.EditProfil;
 import com.demanganesia.explorepurworejo.InformasiAkun;
+import com.demanganesia.explorepurworejo.MasukDanDaftar.LoginActivity;
 import com.demanganesia.explorepurworejo.R;
 import com.demanganesia.explorepurworejo.SyaratDanKetentuan;
 import com.demanganesia.explorepurworejo.TentangAplikasi;
@@ -26,16 +29,19 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 public class ProfilFragment extends Fragment {
 
     LinearLayout LLInformasiAkun, LLTentangAplikasi, LLSyaratDanKetentuan, LLKeluarAkun;
     TextView TVUsername, TVBio;
+    ImageView IVFotoUserProfil;
     Button BtnEditProfil;
 
     String USERNAME_KEY_LOCAL = "usernamekeylocal";
     String username_key_local = "";
     String username_key_new_local = "";
+    Context context;
 
     DatabaseReference databaseReference;
 
@@ -54,14 +60,18 @@ public class ProfilFragment extends Fragment {
         LLKeluarAkun = view.findViewById(R.id.LLkeluar_akun);
         TVUsername = view.findViewById(R.id.TV_username_profil);
         TVBio = view.findViewById(R.id.TV_bio_profil);
+        IVFotoUserProfil = view.findViewById(R.id.IV_foto_user_profil);
         BtnEditProfil = view.findViewById(R.id.Btn_edit_profil);
+        context = getActivity();
 
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child(username_key_new_local);
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 TVUsername.setText(dataSnapshot.child("username").getValue().toString());
                 TVBio.setText(dataSnapshot.child("bio").getValue().toString());
+                Picasso.with(context).load(dataSnapshot.child("url_foto_profil").getValue().toString()).centerCrop().fit().into(IVFotoUserProfil);
             }
 
             @Override
@@ -99,6 +109,19 @@ public class ProfilFragment extends Fragment {
             public void onClick(View v) {
                 Intent keEditProfil = new Intent(getActivity(), EditProfil.class);
                 startActivity(keEditProfil);
+            }
+        });
+
+        LLKeluarAkun.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SharedPreferences preferences = getActivity().getSharedPreferences("cekBox", MODE_PRIVATE);
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putString("cekIngatSaya", "false");
+                editor.apply();
+                Intent keLogin = new Intent(getActivity(), LoginActivity.class);
+                startActivity(keLogin);
+                getActivity().finish();
             }
         });
         return view;

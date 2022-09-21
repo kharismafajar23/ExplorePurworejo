@@ -15,7 +15,7 @@ public class UserHelperClass {
         this.bio = bio;
         this.url_foto_profil = url_foto_profil;
         this.bio = " ";
-        this.url_foto_profil = " ";
+        this.url_foto_profil = "https://firebasestorage.googleapis.com/v0/b/explore-purworejo.appspot.com/o/profilexample.png?alt=media&token=93749f07-754e-4095-ae7c-501c2e96d3bd";
     }
 
     public String getNama_lengkap() {

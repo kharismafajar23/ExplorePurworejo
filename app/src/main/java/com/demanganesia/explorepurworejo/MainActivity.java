@@ -1,9 +1,7 @@
 package com.demanganesia.explorepurworejo;
 
 import android.content.DialogInterface;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.View;
 import android.view.WindowManager;
 import android.widget.Toast;
 
@@ -36,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
         replace(new HomeFragment());
         bottomBar = findViewById(R.id.bottomBar);
+
         bottomBar.setOnItemSelectedListener(new OnItemSelectedListener() {
             @Override
             public boolean onItemSelect(int i) {
@@ -65,16 +64,6 @@ public class MainActivity extends AppCompatActivity {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.frame,fragment);
         transaction.commit();
-    }
-
-    public void keluarAkun(View view) {
-        // startActivity(new Intent(getApplicationContext(), LoginActivity.class));
-
-        SharedPreferences preferences = getSharedPreferences("cekBox", MODE_PRIVATE);
-        SharedPreferences.Editor editor = preferences.edit();
-        editor.putString("cekIngatSaya", "false");
-        editor.apply();
-        finish();
     }
 
     protected void keluarAplikasi() {

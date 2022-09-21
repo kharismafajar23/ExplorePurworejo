@@ -9,6 +9,25 @@
     android:paddingLeft="32dp"
     android:paddingRight="32dp">
 
+    <ImageView
+        android:layout_width="52dp"
+        android:layout_height="52dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <io.github.florent37.shapeofview.shapes.CircleView
+        android:layout_width="52dp"
+        android:layout_height="52dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/IV_foto_user_home"
+            android:layout_width="52dp"
+            android:layout_height="52dp"/>
+
+    </io.github.florent37.shapeofview.shapes.CircleView>
+
     <LinearLayout
         android:id="@+id/linear_layout"
         android:layout_width="match_parent"
@@ -43,7 +62,6 @@
 
                 <TextView
                     android:id="@+id/TVusername_home"
-                    android:text="@string/username"
                     android:textSize="20sp"
                     android:textColor="@color/hijau"
                     android:fontFamily="@font/poppins_medium"
@@ -62,16 +80,6 @@
                 android:layout_marginTop="-5dp"/>
         </LinearLayout>
     </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="right">
-
-            <ImageView
-                android:src="@drawable/ic_profilexample"
-                android:layout_width="48dp"
-                android:layout_height="48dp"/>
-        </LinearLayout>
     </LinearLayout>
 
     <androidx.appcompat.widget.SearchView

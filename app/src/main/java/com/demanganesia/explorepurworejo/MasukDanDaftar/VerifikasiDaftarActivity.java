@@ -48,7 +48,7 @@ public class VerifikasiDaftarActivity extends AppCompatActivity {
         tanggalLahir = getIntent().getStringExtra("tanggalLahir");
         nomorTelefon = getIntent().getStringExtra("nomorTelefon");
         bio = "";
-        urlFotoProfil = "";
+        urlFotoProfil = "https://firebasestorage.googleapis.com/v0/b/explore-purworejo.appspot.com/o/profilexample.png?alt=media&token=93749f07-754e-4095-ae7c-501c2e96d3bd";
 
         signInWithPhoneAuthCredential(nomorTelefon);
     }
@@ -105,6 +105,7 @@ public class VerifikasiDaftarActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             kirimDataPenggunaBaru();
                             startActivity(new Intent(getApplicationContext(), SuksesMendaftar.class));
+                            finish();
                         } else {
                             if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
                                 Toast.makeText(VerifikasiDaftarActivity.this, "Verifikasi gagal, silahkan coba lagi", Toast.LENGTH_SHORT).show();

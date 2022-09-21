@@ -64,6 +64,7 @@ public class LoginActivity extends AppCompatActivity {
         if(cekBox.equals("true")){
             Intent langsungKeMain = new Intent(LoginActivity.this, MainActivity.class);
             startActivity(langsungKeMain);
+            finish();
         } else if (cekBox.equals("false")) {
         }
 
@@ -118,6 +119,7 @@ public class LoginActivity extends AppCompatActivity {
                                 //ke main act
                                 Intent keMain = new Intent(LoginActivity.this, MainActivity.class);
                                 startActivity(keMain);
+                                finish();
 
                             //password salah
                             } else {

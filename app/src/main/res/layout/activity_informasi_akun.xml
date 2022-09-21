@@ -17,7 +17,7 @@
         android:adjustViewBounds="true"/>
 
     <ImageView
-        android:id="@+id/kembali"
+        android:id="@+id/IV_kembali_IA"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
@@ -28,12 +28,25 @@
 
     <ImageView
         android:id="@+id/foto_profil_IA"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_profilexample"
+        android:layout_width="98dp"
+        android:layout_height="98dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/kembali" />
+        app:layout_constraintTop_toBottomOf="@id/IV_kembali_IA" />
+
+    <io.github.florent37.shapeofview.shapes.CircleView
+        android:layout_width="98dp"
+        android:layout_height="98dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/IV_kembali_IA">
+
+        <ImageView
+            android:id="@+id/IV_foto_user_profil_IA"
+            android:layout_width="98dp"
+            android:layout_height="98dp"/>
+
+    </io.github.florent37.shapeofview.shapes.CircleView>
 
     <LinearLayout
         android:id="@+id/linear_layout"
