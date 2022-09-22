@@ -14,6 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ExplorePurworejo">
         <activity
+            android:name=".DetailWisata"
+            android:exported="false" />
+        <activity
             android:name=".EditProfil"
             android:exported="false" />
         <activity

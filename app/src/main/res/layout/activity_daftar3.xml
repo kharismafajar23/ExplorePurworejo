@@ -71,10 +71,7 @@
             android:layout_marginTop="12dp">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:fontFamily="@font/poppins_regular"
-                android:textColor="@color/text_color"
+                style="@style/inputText"
                 android:inputType="number"/>
         </com.google.android.material.textfield.TextInputLayout>
 

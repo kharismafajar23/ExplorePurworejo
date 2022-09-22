@@ -94,4 +94,13 @@
         android:background="@drawable/outline_hitam"
         android:layout_marginTop="26dp"/>
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/RV_rekomendasi_wisata"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/search"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="24dp"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

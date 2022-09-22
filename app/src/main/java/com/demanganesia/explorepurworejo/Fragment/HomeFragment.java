@@ -13,6 +13,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.demanganesia.explorepurworejo.R;
 import com.google.firebase.database.DataSnapshot;
@@ -31,7 +32,9 @@ public class HomeFragment extends Fragment {
     String username_key_local = "";
     String username_key_new_local = "";
 
-    DatabaseReference databaseReference;
+    DatabaseReference databaseReference, databaseReference2;
+
+    RecyclerView RVRekomendasiWisata;
 
     @Nullable
     @Override
@@ -44,6 +47,7 @@ public class HomeFragment extends Fragment {
 
         TVusername = view.findViewById(R.id.TVusername_home);
         IVFotoUserHome = view.findViewById(R.id.IV_foto_user_home);
+        RVRekomendasiWisata = view.findViewById(R.id.RV_rekomendasi_wisata);
 
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child(username_key_new_local);
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -58,6 +62,7 @@ public class HomeFragment extends Fragment {
 
             }
         });
+
         return view;
     }
     public void getUsernameLocal() {

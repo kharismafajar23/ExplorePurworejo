@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="12dp">
+
+    <io.github.florent37.shapeofview.shapes.RoundRectView
+        android:layout_width="110dp"
+        android:layout_height="150dp">
+
+        <ImageView
+            android:id="@+id/thumbnail_wisata_rekomendasi"
+            android:layout_width="110dp"
+            android:layout_height="150dp"/>
+
+    </io.github.florent37.shapeofview.shapes.RoundRectView>
+
+    <TextView
+        android:id="@+id/nama_wisata_rekomendasi"
+        style="@style/nama_wisata"
+        android:textColor="@color/hijau"/>
+
+</LinearLayout>

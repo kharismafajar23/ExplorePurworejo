@@ -5,17 +5,25 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.demanganesia.explorepurworejo.R;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class DaftarActivity extends AppCompatActivity {
 
     TextInputLayout ETNamaLengkap, ETusername, ETemail, ETKataSandi;
     Button BtnDaftar;
     String _namaLengkap, _username, _email, _kataSandi;
+    DatabaseReference database_reference_username;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,20 +45,33 @@ public class DaftarActivity extends AppCompatActivity {
         if (!validasiFormNamaLengkap() | !validasiFormUsername() | !validasiFormEmail() | !validasiFormKataSandi()){
             return;
         } else {
+            //mengambil username yang sudah ada
+            database_reference_username = FirebaseDatabase.getInstance().getReference().child("Users").child(ETusername.getEditText().getText().toString());
+            database_reference_username.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.exists()) {
+                        Toast.makeText(DaftarActivity.this, "Username sudah digunakan", Toast.LENGTH_SHORT).show();
+                    } else {
+                        _namaLengkap = ETNamaLengkap.getEditText().getText().toString().trim();
+                        _username = ETusername.getEditText().getText().toString().trim();
+                        _email = ETemail.getEditText().getText().toString().trim();
+                        _kataSandi = ETKataSandi.getEditText().getText().toString().trim();
 
-            _namaLengkap = ETNamaLengkap.getEditText().getText().toString().trim();
-            _username = ETusername.getEditText().getText().toString().trim();
-            _email = ETemail.getEditText().getText().toString().trim();
-            _kataSandi = ETKataSandi.getEditText().getText().toString().trim();
+                        Intent intent = new Intent(DaftarActivity.this, Daftar2Activity.class);
 
-            Intent intent = new Intent(DaftarActivity.this, Daftar2Activity.class);
+                        intent.putExtra("namaLengkap", _namaLengkap);
+                        intent.putExtra("username", _username);
+                        intent.putExtra("email",_email);
+                        intent.putExtra("kataSandi", _kataSandi);
 
-            intent.putExtra("namaLengkap", _namaLengkap);
-            intent.putExtra("username", _username);
-            intent.putExtra("email",_email);
-            intent.putExtra("kataSandi", _kataSandi);
-
-            startActivity(intent);
+                        startActivity(intent);
+                    }
+                }
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                }
+            });
         }
     }
 

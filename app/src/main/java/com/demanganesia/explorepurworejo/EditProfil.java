@@ -77,6 +77,7 @@ public class EditProfil extends AppCompatActivity {
         BtnSimpan = findViewById(R.id.Btn_simpan_EP);
         tanggalLahir = findViewById(R.id.DPtanggal_lahir_EP);
 
+
         getUsernameLocal();
 
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child(username_key_new_local);
