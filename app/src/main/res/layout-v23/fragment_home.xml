@@ -6,8 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".Fragment.HomeFragment"
     android:paddingTop="32dp"
-    android:paddingLeft="24dp"
-    android:paddingRight="24dp">
+    android:paddingLeft="32dp"
+    android:paddingRight="32dp">
 
     <ImageView
         android:layout_width="52dp"

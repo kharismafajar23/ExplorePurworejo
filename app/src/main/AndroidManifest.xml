@@ -14,6 +14,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ExplorePurworejo">
         <activity
+            android:name=".HasilPencarian"
+            android:exported="false" />
+        <activity
+            android:name=".HasilKategoriWisata"
+            android:exported="false" />
+        <activity
             android:name=".DetailWisata"
             android:exported="false" />
         <activity

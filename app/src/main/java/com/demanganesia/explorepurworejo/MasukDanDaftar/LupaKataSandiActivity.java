@@ -38,6 +38,10 @@ public class LupaKataSandiActivity extends AppCompatActivity {
 
     public void keVerifikasiLupaSandi(View view) {
 
+        if (!validasiFormUsername() | !validasiFormNomorTelepon()) {
+            return;
+        }
+
         //get data
         _username = ETusername.getEditText().getText().toString().trim();
         _inputNomorTelefon = EtnomorTelefon.getEditText().getText().toString().trim();
@@ -85,5 +89,38 @@ public class LupaKataSandiActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    //validasi form username
+    private boolean validasiFormUsername() {
+        String val = ETusername.getEditText().getText().toString().trim();
+
+        if (val.isEmpty()) {
+            ETusername.setError("Bagian ini tidak boleh kosong");
+            return false;
+        }
+        else {
+            ETusername.setError(null);
+            ETusername.setErrorEnabled(false);
+            return true;
+        }
+    }
+    //validasi form nomor telefon
+    private boolean validasiFormNomorTelepon() {
+        String val = EtnomorTelefon.getEditText().getText().toString().trim();
+        String cekSpasi = "\\A\\w{1,20}\\z";
+
+        if (val.isEmpty()) {
+            EtnomorTelefon.setError("Bagian ini tidak boleh kosong");
+            return false;
+        } else if(!val.matches(cekSpasi)) {
+            EtnomorTelefon.setError("Spasi tidak diperbolehkan");
+            return false;
+        }
+        else {
+            EtnomorTelefon.setError(null);
+            EtnomorTelefon.setErrorEnabled(false);
+            return true;
+        }
     }
 }
