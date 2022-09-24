@@ -31,7 +31,7 @@
             android:text="@string/hasil_pencarian"/>
 
         <TextView
-            android:id="@+id/kata_kunci_pencarian"
+            android:id="@+id/TVkata_kunci_pencarian"
             style="@style/hasil_pencarian_2"
             android:text="pencarian"
             android:layout_marginTop="-6dp"/>

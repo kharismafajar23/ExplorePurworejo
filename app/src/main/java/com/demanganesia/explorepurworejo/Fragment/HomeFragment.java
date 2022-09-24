@@ -10,8 +10,10 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,6 +22,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.demanganesia.explorepurworejo.DetailWisata;
 import com.demanganesia.explorepurworejo.HasilKategoriWisata;
+import com.demanganesia.explorepurworejo.HasilPencarian;
 import com.demanganesia.explorepurworejo.InformasiAkun;
 import com.demanganesia.explorepurworejo.R;
 import com.demanganesia.explorepurworejo.RekomendasiWisata;
@@ -35,7 +38,9 @@ import com.squareup.picasso.Picasso;
 public class HomeFragment extends Fragment {
 
     TextView TVusername;
-    ImageView IVFotoUserHome, BtnPantai, BtnGoa, BtnAirTerjun, BtnAlam, BtnOlahraga, BtnBuatan, BtnRohani, BtnSejarah;
+    EditText ETCariWisata;
+    ImageView IVFotoUserHome, BtnPantai, BtnGoa, BtnAirTerjun, BtnAlam, BtnOlahraga, BtnBuatan, BtnRohani, BtnSejarah, BtnSearch;
+    String _kata_kunci;
 
     String USERNAME_KEY_LOCAL = "usernamekeylocal";
     String username_key_local = "";
@@ -62,6 +67,7 @@ public class HomeFragment extends Fragment {
 
         getUsernameLocal();
 
+        ETCariWisata = view.findViewById(R.id.ET_cari_wisata);
         TVusername = view.findViewById(R.id.TVusername_home);
         IVFotoUserHome = view.findViewById(R.id.IV_foto_user_home);
         RVRekomendasiWisata = view.findViewById(R.id.RV_rekomendasi_wisata_home);
@@ -73,13 +79,14 @@ public class HomeFragment extends Fragment {
         BtnBuatan = view.findViewById(R.id.IV_buatan);
         BtnRohani = view.findViewById(R.id.IV_rohani);
         BtnSejarah = view.findViewById(R.id.IV_sejarah);
+        BtnSearch = view.findViewById(R.id.Btn_cari_wisata);
         globalContext = this.getActivity();
 
 
         //RVRekomendasiWisata.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
         RVRekomendasiWisata.setHasFixedSize(true);
 
-        databaseReferenceWisata = FirebaseDatabase.getInstance().getReference().child("Wisata");
+        databaseReferenceWisata = FirebaseDatabase.getInstance().getReference().child("Rekomendasi Wisata");
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child(username_key_new_local);
 
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -117,67 +124,94 @@ public class HomeFragment extends Fragment {
         BtnGoa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent keKategoriPantai = new Intent(getActivity(), HasilKategoriWisata.class);
-                keKategoriPantai.putExtra("_kategori", "Goa");
-                startActivity(keKategoriPantai);
+                Intent keKategoriGoa = new Intent(getActivity(), HasilKategoriWisata.class);
+                keKategoriGoa.putExtra("_kategori", "Goa");
+                startActivity(keKategoriGoa);
             }
         });
 
         BtnAirTerjun.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent keKategoriPantai = new Intent(getActivity(), HasilKategoriWisata.class);
-                keKategoriPantai.putExtra("_kategori", "Air Terjun");
-                startActivity(keKategoriPantai);
+                Intent keKategoriAirTerjun = new Intent(getActivity(), HasilKategoriWisata.class);
+                keKategoriAirTerjun.putExtra("_kategori", "Air Terjun");
+                startActivity(keKategoriAirTerjun);
             }
         });
 
         BtnAlam.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent keKategoriPantai = new Intent(getActivity(), HasilKategoriWisata.class);
-                keKategoriPantai.putExtra("_kategori", "Alam");
-                startActivity(keKategoriPantai);
+                Intent keKategoriAlam = new Intent(getActivity(), HasilKategoriWisata.class);
+                keKategoriAlam.putExtra("_kategori", "Alam");
+                startActivity(keKategoriAlam);
             }
         });
 
         BtnOlahraga.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent keKategoriPantai = new Intent(getActivity(), HasilKategoriWisata.class);
-                keKategoriPantai.putExtra("_kategori", "Olahraga");
-                startActivity(keKategoriPantai);
+                Intent keKategoriOlahraga = new Intent(getActivity(), HasilKategoriWisata.class);
+                keKategoriOlahraga.putExtra("_kategori", "Olahraga");
+                startActivity(keKategoriOlahraga);
             }
         });
 
         BtnBuatan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent keKategoriPantai = new Intent(getActivity(), HasilKategoriWisata.class);
-                keKategoriPantai.putExtra("_kategori", "Buatan");
-                startActivity(keKategoriPantai);
+                Intent keKategoriBuatan = new Intent(getActivity(), HasilKategoriWisata.class);
+                keKategoriBuatan.putExtra("_kategori", "Buatan");
+                startActivity(keKategoriBuatan);
             }
         });
 
         BtnRohani.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent keKategoriPantai = new Intent(getActivity(), HasilKategoriWisata.class);
-                keKategoriPantai.putExtra("_kategori", "Rohani");
-                startActivity(keKategoriPantai);
+                Intent keKategoriRohani = new Intent(getActivity(), HasilKategoriWisata.class);
+                keKategoriRohani.putExtra("_kategori", "Rohani");
+                startActivity(keKategoriRohani);
             }
         });
 
         BtnSejarah.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent keKategoriPantai = new Intent(getActivity(), HasilKategoriWisata.class);
-                keKategoriPantai.putExtra("_kategori", "Sejarah");
-                startActivity(keKategoriPantai);
+                Intent keKategoriSejarah = new Intent(getActivity(), HasilKategoriWisata.class);
+                keKategoriSejarah.putExtra("_kategori", "Sejarah");
+                startActivity(keKategoriSejarah);
+            }
+        });
+
+        //cari wisata
+        BtnSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!validasiFormInput()){
+                    return;
+                }
+                _kata_kunci = ETCariWisata.getText().toString().trim();
+                Intent kePencarian = new Intent(getActivity(), HasilPencarian.class);
+                kePencarian.putExtra("_kata_kunci", _kata_kunci);
+                startActivity(kePencarian);
+
             }
         });
         loadData();
         return view;
+    }
+
+    private boolean validasiFormInput() {
+        String val = ETCariWisata.getText().toString().trim();
+
+        if (val.isEmpty()) {
+            Toast.makeText(globalContext, "Kata kunci tidak boleh kosong", Toast.LENGTH_SHORT).show();
+            return false;
+        } else {
+            ETCariWisata.setError(null);
+            return true;
+        }
     }
 
     private void loadData() {

@@ -25,7 +25,7 @@
             <ImageView
                 android:id="@+id/IV_thumbnail_wisata_hasil_pencarian"
                 android:layout_width="match_parent"
-                android:layout_height="120dp"/>
+                android:layout_height="150dp"/>
 
         </io.github.florent37.shapeofview.shapes.RoundRectView>
 

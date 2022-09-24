@@ -48,7 +48,7 @@
     </style>
 
     <style name="hasil_pencarian_desc">
-        <item name="android:textSize">10sp</item>
+        <item name="android:textSize">11sp</item>
         <item name="android:textColor">@color/text_color</item>
         <item name="android:fontFamily">@font/poppins_light</item>
         <item name="android:layout_width">wrap_content</item>

@@ -11,4 +11,7 @@
     <color name="main_text_color">#000000</color>
     <color name="text_color">#2F2F2F</color>
     <color name="hijau">#0AA86B</color>
+
+    <color name="abu_abu_1">#EDEDED</color>
+    <color name="abu_abu_2">#DCE2E7</color>
 </resources>
