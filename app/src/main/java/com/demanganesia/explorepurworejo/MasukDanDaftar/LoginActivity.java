@@ -80,6 +80,10 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                if (!validasiFormUsername() | !validasiFormKataSandi()) {
+                    return;
+                }
+
                 //cek koneksi internet
                 if (!cekInternet()) {
 
@@ -208,4 +212,33 @@ public class LoginActivity extends AppCompatActivity {
         keluarAplikasi();
     }
 
+    //validasi form username
+    private boolean validasiFormUsername() {
+        String val = ETUsername.getEditText().getText().toString().trim();
+
+        if (val.isEmpty()) {
+            ETUsername.setError("Bagian ini tidak boleh kosong");
+            return false;
+        }
+        else {
+            ETUsername.setError(null);
+            ETUsername.setErrorEnabled(false);
+            return true;
+        }
+    }
+
+    //validasi form username
+    private boolean validasiFormKataSandi() {
+        String val = ETKataSandi.getEditText().getText().toString().trim();
+
+        if (val.isEmpty()) {
+            ETKataSandi.setError("Bagian ini tidak boleh kosong");
+            return false;
+        }
+        else {
+            ETKataSandi.setError(null);
+            ETKataSandi.setErrorEnabled(false);
+            return true;
+        }
+    }
 }

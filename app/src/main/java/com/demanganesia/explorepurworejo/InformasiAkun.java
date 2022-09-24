@@ -59,7 +59,7 @@ public class InformasiAkun extends AppCompatActivity {
                 TVNomorTelefon.setText(dataSnapshot.child("nomor_telefon").getValue().toString());
                 TVJenisKelamin.setText(dataSnapshot.child("jenis_kelamin").getValue().toString());
                 TVTanggalLahir.setText(dataSnapshot.child("tanggal_lahir").getValue().toString());
-                Picasso.with(InformasiAkun.this).load(dataSnapshot.child("url_foto_profil").getValue().toString()).centerCrop().fit().into(IVFotoUserProfilIA);
+                Picasso.get().load(dataSnapshot.child("url_foto_profil").getValue().toString()).centerCrop().fit().into(IVFotoUserProfilIA);
             }
 
             @Override

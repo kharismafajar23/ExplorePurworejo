@@ -24,13 +24,13 @@
             <ImageView
                 android:id="@+id/IV_thumbnail_wisata_kategori"
                 android:layout_width="match_parent"
-                android:layout_height="120dp"/>
+                android:layout_height="150dp"/>
 
         </io.github.florent37.shapeofview.shapes.RoundRectView>
 
         <TextView
             android:id="@+id/TV_nama_wisata_kategori"
-            style="@style/nama_wisata"
+            style="@style/nama_wisata_hasil_pencarian"
             android:text="Nama Wisata"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

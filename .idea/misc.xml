@@ -6,6 +6,7 @@
         <entry key="..\:/Users/Kharisma/AndroidStudioProjects/ExplorePurworejo/app/src/main/res/drawable/bg_button.xml" value="0.1665" />
         <entry key="..\:/Users/Kharisma/AndroidStudioProjects/ExplorePurworejo/app/src/main/res/drawable/bg_button2.xml" value="0.1165" />
         <entry key="..\:/Users/Kharisma/AndroidStudioProjects/ExplorePurworejo/app/src/main/res/drawable/ic_bg_top.xml" value="0.1165" />
+        <entry key="..\:/Users/Kharisma/AndroidStudioProjects/ExplorePurworejo/app/src/main/res/drawable/ic_kembali_bghijau.xml" value="0.11" />
         <entry key="..\:/Users/Kharisma/AndroidStudioProjects/ExplorePurworejo/app/src/main/res/drawable/ic_logo_ep.xml" value="0.1665" />
         <entry key="..\:/Users/Kharisma/AndroidStudioProjects/ExplorePurworejo/app/src/main/res/drawable/ic_onboard1.xml" value="0.1665" />
         <entry key="..\:/Users/Kharisma/AndroidStudioProjects/ExplorePurworejo/app/src/main/res/drawable/ic_onboard2.xml" value="0.1665" />
@@ -15,6 +16,7 @@
         <entry key="..\:/Users/Kharisma/AndroidStudioProjects/ExplorePurworejo/app/src/main/res/drawable/outline_hitam.xml" value="0.1665" />
         <entry key="..\:/Users/Kharisma/AndroidStudioProjects/ExplorePurworejo/app/src/main/res/font/font_style.xml" value="0.23489583333333333" />
         <entry key="..\:/Users/Kharisma/AndroidStudioProjects/ExplorePurworejo/app/src/main/res/layout-v23/fragment_home.xml" value="0.2046875" />
+        <entry key="..\:/Users/Kharisma/AndroidStudioProjects/ExplorePurworejo/app/src/main/res/layout/activity_coba_rute.xml" value="0.2046875" />
         <entry key="..\:/Users/Kharisma/AndroidStudioProjects/ExplorePurworejo/app/src/main/res/layout/activity_daftar.xml" value="0.25" />
         <entry key="..\:/Users/Kharisma/AndroidStudioProjects/ExplorePurworejo/app/src/main/res/layout/activity_daftar2.xml" value="0.25" />
         <entry key="..\:/Users/Kharisma/AndroidStudioProjects/ExplorePurworejo/app/src/main/res/layout/activity_daftar3.xml" value="0.2046875" />
@@ -35,13 +37,14 @@
         <entry key="..\:/Users/Kharisma/AndroidStudioProjects/ExplorePurworejo/app/src/main/res/layout/activity_sukses_mendaftar.xml" value="0.2046875" />
         <entry key="..\:/Users/Kharisma/AndroidStudioProjects/ExplorePurworejo/app/src/main/res/layout/activity_sukses_update_sandi.xml" value="0.2046875" />
         <entry key="..\:/Users/Kharisma/AndroidStudioProjects/ExplorePurworejo/app/src/main/res/layout/activity_syarat_dan_ketentuan.xml" value="0.19114583333333332" />
+        <entry key="..\:/Users/Kharisma/AndroidStudioProjects/ExplorePurworejo/app/src/main/res/layout/activity_tampilkan_rute.xml" value="0.2046875" />
         <entry key="..\:/Users/Kharisma/AndroidStudioProjects/ExplorePurworejo/app/src/main/res/layout/activity_tentang_aplikasi.xml" value="0.2" />
         <entry key="..\:/Users/Kharisma/AndroidStudioProjects/ExplorePurworejo/app/src/main/res/layout/activity_testing.xml" value="0.2046875" />
         <entry key="..\:/Users/Kharisma/AndroidStudioProjects/ExplorePurworejo/app/src/main/res/layout/activity_verifikasi.xml" value="0.2046875" />
         <entry key="..\:/Users/Kharisma/AndroidStudioProjects/ExplorePurworejo/app/src/main/res/layout/activity_verifikasi_daftar.xml" value="0.2046875" />
         <entry key="..\:/Users/Kharisma/AndroidStudioProjects/ExplorePurworejo/app/src/main/res/layout/activity_verifikasi_lupa_sandi.xml" value="0.2046875" />
         <entry key="..\:/Users/Kharisma/AndroidStudioProjects/ExplorePurworejo/app/src/main/res/layout/fragment_blank.xml" value="0.2046875" />
-        <entry key="..\:/Users/Kharisma/AndroidStudioProjects/ExplorePurworejo/app/src/main/res/layout/fragment_home.xml" value="0.2" />
+        <entry key="..\:/Users/Kharisma/AndroidStudioProjects/ExplorePurworejo/app/src/main/res/layout/fragment_home.xml" value="0.25" />
         <entry key="..\:/Users/Kharisma/AndroidStudioProjects/ExplorePurworejo/app/src/main/res/layout/fragment_jelajah.xml" value="0.22" />
         <entry key="..\:/Users/Kharisma/AndroidStudioProjects/ExplorePurworejo/app/src/main/res/layout/fragment_profil.xml" value="0.16314199395770393" />
         <entry key="..\:/Users/Kharisma/AndroidStudioProjects/ExplorePurworejo/app/src/main/res/layout/hasil_pencarian_item_view.xml" value="0.2046875" />

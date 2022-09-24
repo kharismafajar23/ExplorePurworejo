@@ -71,7 +71,7 @@ public class ProfilFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 TVUsername.setText(dataSnapshot.child("username").getValue().toString());
                 TVBio.setText(dataSnapshot.child("bio").getValue().toString());
-                Picasso.with(context).load(dataSnapshot.child("url_foto_profil").getValue().toString()).centerCrop().fit().into(IVFotoUserProfil);
+                Picasso.get().load(dataSnapshot.child("url_foto_profil").getValue().toString()).centerCrop().fit().into(IVFotoUserProfil);
             }
 
             @Override

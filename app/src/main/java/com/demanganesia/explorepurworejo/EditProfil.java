@@ -89,7 +89,7 @@ public class EditProfil extends AppCompatActivity {
                 ETNamaLengkap.getEditText().setText(dataSnapshot.child("nama_lengkap").getValue().toString());
                 ETEmail.getEditText().setText(dataSnapshot.child("email").getValue().toString());
                 ETBio.getEditText().setText(dataSnapshot.child("bio").getValue().toString());
-                Picasso.with(EditProfil.this).load(dataSnapshot.child("url_foto_profil").getValue().toString()).centerCrop().fit().into(IVFotoUserEP);
+                Picasso.get().load(dataSnapshot.child("url_foto_profil").getValue().toString()).centerCrop().fit().into(IVFotoUserEP);
             }
 
             @Override
@@ -209,7 +209,7 @@ public class EditProfil extends AppCompatActivity {
 
         if(requestCode == photo_max && resultCode == RESULT_OK && data != null && data.getData() != null) {
             photo_location = data.getData();
-            Picasso.with(this).load(photo_location).centerCrop().fit().into(IVFotoUserEP);
+            Picasso.get().load(photo_location).centerCrop().fit().into(IVFotoUserEP);
         }
     }
 
