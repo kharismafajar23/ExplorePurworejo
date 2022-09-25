@@ -26,7 +26,7 @@ public class HasilPencarian extends AppCompatActivity {
     ImageView BtnKembali;
     TextView TVHasilPencarian;
     RecyclerView RVHasilPencarian;
-    String _kata_kunci;
+    String kata_kunci;
 
     DatabaseReference databaseReferenceWisata;
 
@@ -43,13 +43,12 @@ public class HasilPencarian extends AppCompatActivity {
         BtnKembali = findViewById(R.id.IV_kembali_hasil_pencarian);
         TVHasilPencarian = findViewById(R.id.TVkata_kunci_pencarian);
         RVHasilPencarian = findViewById(R.id.RV_hasil_pencarian);
-        RVHasilPencarian.setHasFixedSize(true);
 
-        String _kata_kunci = getIntent().getStringExtra("_kata_kunci");
+        kata_kunci = getIntent().getStringExtra("_kata_kunci");
         databaseReferenceWisata = FirebaseDatabase.getInstance().getReference().child("Wisata");
 
-        loadDataHasilPencarian(_kata_kunci);
-        TVHasilPencarian.setText(_kata_kunci);
+        loadDataHasilPencarian(kata_kunci);
+        TVHasilPencarian.setText(kata_kunci);
 
         BtnKembali.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,8 +58,8 @@ public class HasilPencarian extends AppCompatActivity {
         });
     }
 
-    private void loadDataHasilPencarian(String _kata_kunci) {
-        Query query = databaseReferenceWisata.orderByChild("nama_wisata").startAt(_kata_kunci).endAt(_kata_kunci+"\uf8ff");
+    private void loadDataHasilPencarian(String kata_kunci) {
+        Query query = databaseReferenceWisata.orderByChild("nama_wisata").startAt(kata_kunci).endAt(kata_kunci+"\uf8ff");
 
         options = new FirebaseRecyclerOptions.Builder<PencarianWisata>().setQuery(query, PencarianWisata.class).build();
         adapter = new FirebaseRecyclerAdapter<PencarianWisata, PencarianViewHolder>(options) {
@@ -93,23 +92,8 @@ public class HasilPencarian extends AppCompatActivity {
     }
 
     @Override
-    protected void onPostResume() {
-        super.onPostResume();
-        adapter.startListening();
-        RVHasilPencarian.setAdapter(adapter);
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        adapter.startListening();
-        RVHasilPencarian.setAdapter(adapter);
-    }
-
-    @Override
     protected void onStart() {
         super.onStart();
         adapter.startListening();
-        RVHasilPencarian.setAdapter(adapter);
     }
 }

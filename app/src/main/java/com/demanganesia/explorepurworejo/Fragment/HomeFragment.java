@@ -82,10 +82,6 @@ public class HomeFragment extends Fragment {
         BtnSearch = view.findViewById(R.id.Btn_cari_wisata);
         globalContext = this.getActivity();
 
-
-        //RVRekomendasiWisata.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
-        RVRekomendasiWisata.setHasFixedSize(true);
-
         databaseReferenceWisata = FirebaseDatabase.getInstance().getReference().child("Rekomendasi Wisata");
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child(username_key_new_local);
 
@@ -191,7 +187,7 @@ public class HomeFragment extends Fragment {
                 if (!validasiFormInput()){
                     return;
                 }
-                _kata_kunci = ETCariWisata.getText().toString().trim();
+                _kata_kunci = ETCariWisata.getText().toString();
                 Intent kePencarian = new Intent(getActivity(), HasilPencarian.class);
                 kePencarian.putExtra("_kata_kunci", _kata_kunci);
                 startActivity(kePencarian);

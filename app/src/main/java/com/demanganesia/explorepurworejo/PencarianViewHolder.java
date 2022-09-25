@@ -7,7 +7,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-class PencarianViewHolder extends RecyclerView.ViewHolder {
+public class PencarianViewHolder extends RecyclerView.ViewHolder {
 
     ImageView IVThumbnanilWisataPencarian;
     TextView TVNamaWisataPencarian, TVAlamatPencarian;

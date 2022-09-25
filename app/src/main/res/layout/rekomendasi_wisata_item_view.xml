@@ -30,7 +30,7 @@
 
         <TextView
             android:id="@+id/nama_wisata_rekomendasi"
-            android:textColor="@color/hijau"
+            android:textColor="@color/main_text_color"
             style="@style/nama_wisata"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

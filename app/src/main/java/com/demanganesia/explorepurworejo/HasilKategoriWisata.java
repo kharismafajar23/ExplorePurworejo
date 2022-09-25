@@ -42,7 +42,6 @@ public class HasilKategoriWisata extends AppCompatActivity {
 
         RVHasilKategoriWisata = findViewById(R.id.RV_hasil_kategori_wisata);
         BtnKembali = findViewById(R.id.IV_kembali_kategori);
-        RVHasilKategoriWisata.setHasFixedSize(true);
         TVKategori2 = findViewById(R.id.TV_kategori_2);
         _kategori = getIntent().getStringExtra("_kategori");
         databaseReferenceWisata = FirebaseDatabase.getInstance().getReference().child("Wisata");

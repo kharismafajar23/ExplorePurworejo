@@ -7,7 +7,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-class KategoriViewHolder extends RecyclerView.ViewHolder {
+public class KategoriViewHolder extends RecyclerView.ViewHolder {
 
     ImageView IVThumbnailWisataKategori;
     TextView TVNamaWisataKategori, TVAlamatWisata;

@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.demanganesia.explorepurworejo.R;
 
-class MyViewHolder extends RecyclerView.ViewHolder {
+public class MyViewHolder extends RecyclerView.ViewHolder {
 
     ImageView thumbnail_wisata;
     TextView nama_wisata;
