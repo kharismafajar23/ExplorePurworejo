@@ -46,8 +46,9 @@ public class JelajahFragment extends Fragment {
         
         ETCariJelajah = view.findViewById(R.id.ET_cari_jelajah);
         RVJelajahWisata = view.findViewById(R.id.RV_jelajah);
-        
+        RVJelajahWisata.setItemAnimator(null);
         databaseReferenceWisata = FirebaseDatabase.getInstance().getReference().child("Wisata");
+
 
         loadDataJelajah("");
         ETCariJelajah.addTextChangedListener(new TextWatcher() {
