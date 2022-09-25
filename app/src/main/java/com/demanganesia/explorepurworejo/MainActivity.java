@@ -1,6 +1,9 @@
 package com.demanganesia.explorepurworejo;
 
+import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.drawable.ColorDrawable;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.view.WindowManager;
 import android.widget.Toast;
@@ -13,6 +16,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.demanganesia.explorepurworejo.Fragment.HomeFragment;
 import com.demanganesia.explorepurworejo.Fragment.JelajahFragment;
 import com.demanganesia.explorepurworejo.Fragment.ProfilFragment;
+import com.demanganesia.explorepurworejo.HelperClasses.NoInternetDialog;
 import com.google.firebase.messaging.FirebaseMessaging;
 
 import me.ibrahimsn.lib.OnItemSelectedListener;
@@ -34,6 +38,16 @@ public class MainActivity extends AppCompatActivity {
 
         replace(new HomeFragment());
         bottomBar = findViewById(R.id.bottomBar);
+
+        //cek koneksi internet
+        if (!cekInternet()) {
+
+            //show dialog
+            NoInternetDialog noInternetDialog = new NoInternetDialog(MainActivity.this);
+            noInternetDialog.setCancelable(false);
+            noInternetDialog.getWindow().setBackgroundDrawable(new ColorDrawable(getResources().getColor(android.R.color.transparent)));
+            noInternetDialog.show();
+        }
 
         bottomBar.setOnItemSelectedListener(new OnItemSelectedListener() {
             @Override
@@ -95,5 +109,10 @@ public class MainActivity extends AppCompatActivity {
 //            backToast.show();
 //        }
 //        backPress = System.currentTimeMillis();
+    }
+
+    private boolean cekInternet() {
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        return connectivityManager.getActiveNetworkInfo() != null && connectivityManager.getActiveNetworkInfo().isConnected();
     }
 }

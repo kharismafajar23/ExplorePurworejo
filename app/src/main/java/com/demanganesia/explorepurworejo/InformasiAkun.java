@@ -1,6 +1,9 @@
 package com.demanganesia.explorepurworejo;
 
+import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.drawable.ColorDrawable;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
@@ -10,6 +13,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.demanganesia.explorepurworejo.HelperClasses.NoInternetDialog;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -47,6 +51,16 @@ public class InformasiAkun extends AppCompatActivity {
         Btn_kembali = findViewById(R.id.IV_kembali_IA);
         IVFotoUserProfilIA = findViewById(R.id.IV_foto_user_profil_IA);
 
+        //cek koneksi internet
+        if (!cekInternet()) {
+
+            //show dialog
+            NoInternetDialog noInternetDialog = new NoInternetDialog(InformasiAkun.this);
+            noInternetDialog.setCancelable(false);
+            noInternetDialog.getWindow().setBackgroundDrawable(new ColorDrawable(getResources().getColor(android.R.color.transparent)));
+            noInternetDialog.show();
+        }
+
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child(username_key_new_local);
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -78,5 +92,10 @@ public class InformasiAkun extends AppCompatActivity {
     public void getUsernameLocal() {
         SharedPreferences sharedPreferences = getSharedPreferences(USERNAME_KEY_LOCAL, MODE_PRIVATE);
         username_key_new_local = sharedPreferences.getString(username_key_local, "");
+    }
+
+    private boolean cekInternet() {
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        return connectivityManager.getActiveNetworkInfo() != null && connectivityManager.getActiveNetworkInfo().isConnected();
     }
 }

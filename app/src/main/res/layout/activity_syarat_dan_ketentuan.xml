@@ -51,7 +51,8 @@
                 android:layout_marginTop="28dp"/>
 
             <TextView
-                android:text="@string/desc_syarat_dan_ketentuan"
+                android:id="@+id/TV_syarat_dan_ketentuan"
+                android:text="-"
                 android:textSize="14sp"
                 android:textColor="@color/text_color"
                 android:lineHeight="22sp"

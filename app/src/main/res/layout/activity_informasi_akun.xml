@@ -60,7 +60,7 @@
 
         <TextView
             android:id="@+id/TVusername_IA_1"
-            android:text="Username"
+            android:text="-"
             android:textSize="20sp"
             android:textColor="@color/putih"
             android:fontFamily="@font/poppins_bold"
@@ -73,7 +73,6 @@
 
         <TextView
             android:id="@+id/TVbio_IA"
-            android:text="your bio"
             android:textSize="14sp"
             android:textColor="@color/putih"
             android:fontFamily="@font/poppins_regular"
@@ -103,7 +102,7 @@
 
         <TextView
             android:id="@+id/TVnama_lengkap_IA"
-            android:text="UsernameEP"
+            android:text="-"
             android:textSize="16sp"
             android:textColor="@color/text_color"
             android:fontFamily="@font/poppins_medium"
@@ -121,7 +120,7 @@
 
         <TextView
             android:id="@+id/TVusername_IA_2"
-            android:text="UsernameEP"
+            android:text="-"
             android:textSize="16sp"
             android:textColor="@color/text_color"
             android:fontFamily="@font/poppins_medium"
@@ -139,7 +138,7 @@
 
         <TextView
             android:id="@+id/TVEmail_IA"
-            android:text="User@gmail.com"
+            android:text="-"
             android:textSize="16sp"
             android:textColor="@color/text_color"
             android:fontFamily="@font/poppins_medium"
@@ -175,7 +174,7 @@
 
         <TextView
             android:id="@+id/TVjenis_kelamin_IA"
-            android:text="Laki-laki"
+            android:text="-"
             android:textSize="16sp"
             android:textColor="@color/text_color"
             android:fontFamily="@font/poppins_medium"
@@ -193,7 +192,7 @@
 
         <TextView
             android:id="@+id/TVtanggal_lahir_IA"
-            android:text="31/02/1999"
+            android:text="-"
             android:textSize="16sp"
             android:textColor="@color/text_color"
             android:fontFamily="@font/poppins_medium"

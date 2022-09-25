@@ -3,6 +3,8 @@ package com.demanganesia.explorepurworejo.Fragment;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +22,7 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.squareup.picasso.Picasso;
 
 public class JelajahFragment extends Fragment {
@@ -31,6 +34,8 @@ public class JelajahFragment extends Fragment {
 
     FirebaseRecyclerOptions<JelajahWisata> options;
     FirebaseRecyclerAdapter<JelajahWisata, JelajahViewHolder> adapter;
+
+    String _inputKeHurufKecil, _inputKeHurufBesar;
 
     @Nullable
     @Override
@@ -44,12 +49,38 @@ public class JelajahFragment extends Fragment {
         
         databaseReferenceWisata = FirebaseDatabase.getInstance().getReference().child("Wisata");
 
-        loadDataJelajah();
+        loadDataJelajah("");
+        ETCariJelajah.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (s.toString()!=null)
+                {
+                    loadDataJelajah(s.toString());
+                }
+                else
+                {
+                    loadDataJelajah("");
+                }
+            }
+        });
         return view;
     }
 
-    private void loadDataJelajah() {
-        options = new FirebaseRecyclerOptions.Builder<JelajahWisata>().setQuery(databaseReferenceWisata, JelajahWisata.class).build();
+    private void loadDataJelajah(String data) {
+
+        Query query = databaseReferenceWisata.orderByChild("nama_wisata").startAt(data).endAt(data + "\uf8ff");
+
+        options = new FirebaseRecyclerOptions.Builder<JelajahWisata>().setQuery(query, JelajahWisata.class).build();
         adapter = new FirebaseRecyclerAdapter<JelajahWisata, JelajahViewHolder>(options) {
             @Override
             protected void onBindViewHolder(@NonNull JelajahViewHolder holder, @SuppressLint("RecyclerView") int position, @NonNull JelajahWisata model) {
