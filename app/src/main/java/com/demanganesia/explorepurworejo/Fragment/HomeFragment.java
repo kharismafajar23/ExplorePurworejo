@@ -39,7 +39,7 @@ public class HomeFragment extends Fragment {
 
     TextView TVusername;
     EditText ETCariWisata;
-    ImageView IVFotoUserHome, BtnPantai, BtnGoa, BtnAirTerjun, BtnAlam, BtnOlahraga, BtnBuatan, BtnRohani, BtnSejarah, BtnSearch;
+    ImageView IVFotoUserHome, BtnPantai, BtnGoa, BtnAirTerjun, BtnAlam, BtnOlahraga, BtnKuliner, BtnRohani, BtnSejarah, BtnSearch;
     String _kata_kunci;
 
     String USERNAME_KEY_LOCAL = "usernamekeylocal";
@@ -76,7 +76,7 @@ public class HomeFragment extends Fragment {
         BtnAirTerjun = view.findViewById(R.id.IV_air_terjun);
         BtnAlam = view.findViewById(R.id.IV_alam);
         BtnOlahraga = view.findViewById(R.id.IV_olahraga);
-        BtnBuatan = view.findViewById(R.id.IV_buatan);
+        BtnKuliner = view.findViewById(R.id.IV_kuliner);
         BtnRohani = view.findViewById(R.id.IV_rohani);
         BtnSejarah = view.findViewById(R.id.IV_sejarah);
         BtnSearch = view.findViewById(R.id.Btn_cari_wisata);
@@ -153,11 +153,11 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        BtnBuatan.setOnClickListener(new View.OnClickListener() {
+        BtnKuliner.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent keKategoriBuatan = new Intent(getActivity(), HasilKategoriWisata.class);
-                keKategoriBuatan.putExtra("_kategori", "Buatan");
+                keKategoriBuatan.putExtra("_kategori", "Kuliner");
                 startActivity(keKategoriBuatan);
             }
         });
@@ -218,6 +218,7 @@ public class HomeFragment extends Fragment {
             protected void onBindViewHolder(@NonNull MyViewHolder holder, @SuppressLint("RecyclerView")final int position, @NonNull RekomendasiWisata model) {
                 Picasso.get().load(model.getUrl_thumbnail()).centerCrop().fit().into(holder.thumbnail_wisata);
                 holder.nama_wisata.setText(model.getNama_wisata());
+                holder.alamat_wisata.setText(model.getAlamat());
                 holder.v.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

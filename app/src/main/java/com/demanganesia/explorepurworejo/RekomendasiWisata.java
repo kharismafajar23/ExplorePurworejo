@@ -2,10 +2,11 @@ package com.demanganesia.explorepurworejo;
 
 public class RekomendasiWisata {
 
-    private String nama_wisata, url_thumbnail;
+    private String nama_wisata, alamat, url_thumbnail;
 
     public RekomendasiWisata(String nama_wisata, String url_thumbnail) {
         this.nama_wisata = nama_wisata;
+        this.alamat = alamat;
         this.url_thumbnail = url_thumbnail;
     }
 
@@ -26,5 +27,13 @@ public class RekomendasiWisata {
 
     public void setUrl_thumbnail(String url_thumbnail) {
         this.url_thumbnail = url_thumbnail;
+    }
+
+    public String getAlamat() {
+        return alamat;
+    }
+
+    public void setAlamat(String alamat) {
+        this.alamat = alamat;
     }
 }

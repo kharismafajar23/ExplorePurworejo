@@ -82,6 +82,7 @@ public class DetailWisata extends AppCompatActivity implements LocationListener,
                     String _jam_operasional = dataSnapshot.child("jam_operasional").getValue().toString();
                     String _deskripsi_wisata = dataSnapshot.child("deskripsi").getValue().toString();
                     String _harga_tiket = dataSnapshot.child("harga_tiket").getValue().toString();
+                    String _url_thumbnail = dataSnapshot.child("url_thumbnail").getValue().toString();
                     String _url_image_1 = dataSnapshot.child("url_image_1").getValue().toString();
                     String _url_image_2 = dataSnapshot.child("url_image_2").getValue().toString();
                     String _url_image_3 = dataSnapshot.child("url_image_3").getValue().toString();
@@ -96,6 +97,7 @@ public class DetailWisata extends AppCompatActivity implements LocationListener,
 
                     //image
                     ArrayList<SlideModel> slideModels = new ArrayList<>();
+                    slideModels.add(new SlideModel(_url_thumbnail, ScaleTypes.CENTER_CROP));
                     slideModels.add(new SlideModel(_url_image_1, ScaleTypes.CENTER_CROP));
                     slideModels.add(new SlideModel(_url_image_2, ScaleTypes.CENTER_CROP));
                     slideModels.add(new SlideModel(_url_image_3, ScaleTypes.CENTER_CROP));
